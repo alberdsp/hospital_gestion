@@ -13,7 +13,6 @@ public class Pacientes  implements java.io.Serializable {
 
 
      private Long id;
-     private Medicos medicos;
      private String sip;
      private String dni;
      private String nombre;
@@ -23,15 +22,6 @@ public class Pacientes  implements java.io.Serializable {
      private String sexo;
      private Date fechaNacimiento;
      private String localidad;
-     private String calle;
-     private String numero;
-     private String puerta;
-     private String piso;
-     private Long enfermeroId;
-     private Long userId;
-     private Date createdAt;
-     private Date updatedAt;
-     private Set citases = new HashSet(0);
 
     public Pacientes() {
     }
@@ -43,8 +33,8 @@ public class Pacientes  implements java.io.Serializable {
         this.nombre = nombre;
         this.apellido1 = apellido1;
     }
-    public Pacientes(Medicos medicos, String sip, String dni, String nombre, String apellido1, String apellido2, String telefono, String sexo, Date fechaNacimiento, String localidad, String calle, String numero, String puerta, String piso, Long enfermeroId, Long userId, Date createdAt, Date updatedAt, Set citases) {
-       this.medicos = medicos;
+    public Pacientes(String sip, String dni, String nombre, String apellido1, String apellido2, String telefono, String sexo, Date fechaNacimiento, String localidad) {
+    
        this.sip = sip;
        this.dni = dni;
        this.nombre = nombre;
@@ -54,15 +44,7 @@ public class Pacientes  implements java.io.Serializable {
        this.sexo = sexo;
        this.fechaNacimiento = fechaNacimiento;
        this.localidad = localidad;
-       this.calle = calle;
-       this.numero = numero;
-       this.puerta = puerta;
-       this.piso = piso;
-       this.enfermeroId = enfermeroId;
-       this.userId = userId;
-       this.createdAt = createdAt;
-       this.updatedAt = updatedAt;
-       this.citases = citases;
+
     }
    
     public Long getId() {
@@ -72,13 +54,7 @@ public class Pacientes  implements java.io.Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    public Medicos getMedicos() {
-        return this.medicos;
-    }
-    
-    public void setMedicos(Medicos medicos) {
-        this.medicos = medicos;
-    }
+   
     public String getSip() {
         return this.sip;
     }
@@ -142,70 +118,7 @@ public class Pacientes  implements java.io.Serializable {
     public void setLocalidad(String localidad) {
         this.localidad = localidad;
     }
-    public String getCalle() {
-        return this.calle;
-    }
-    
-    public void setCalle(String calle) {
-        this.calle = calle;
-    }
-    public String getNumero() {
-        return this.numero;
-    }
-    
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-    public String getPuerta() {
-        return this.puerta;
-    }
-    
-    public void setPuerta(String puerta) {
-        this.puerta = puerta;
-    }
-    public String getPiso() {
-        return this.piso;
-    }
-    
-    public void setPiso(String piso) {
-        this.piso = piso;
-    }
-    public Long getEnfermeroId() {
-        return this.enfermeroId;
-    }
-    
-    public void setEnfermeroId(Long enfermeroId) {
-        this.enfermeroId = enfermeroId;
-    }
-    public Long getUserId() {
-        return this.userId;
-    }
-    
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-    public Date getCreatedAt() {
-        return this.createdAt;
-    }
-    
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-    public Date getUpdatedAt() {
-        return this.updatedAt;
-    }
-    
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-    public Set getCitases() {
-        return this.citases;
-    }
-    
-    public void setCitases(Set citases) {
-        this.citases = citases;
-    }
-
+   
 
 
 

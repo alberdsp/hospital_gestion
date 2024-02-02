@@ -15,8 +15,7 @@ public class Citas  implements java.io.Serializable {
      private Pacientes pacientes;
      private Date fecha;
      private Long enfermeroId;
-     private Date createdAt;
-     private Date updatedAt;
+
 
     public Citas() {
     }
@@ -25,15 +24,13 @@ public class Citas  implements java.io.Serializable {
     public Citas(Date fecha) {
         this.fecha = fecha;
     }
-    public Citas(Medicos medicos, Pacientes pacientes, Date fecha, Long enfermeroId, Date createdAt, Date updatedAt) {
+    public Citas(Medicos medicos, Pacientes pacientes, Date fecha) {
        this.medicos = medicos;
        this.pacientes = pacientes;
        this.fecha = fecha;
-       this.enfermeroId = enfermeroId;
-       this.createdAt = createdAt;
-       this.updatedAt = updatedAt;
+      
+ 
     }
-   
     public Long getId() {
         return this.id;
     }
@@ -66,26 +63,6 @@ public class Citas  implements java.io.Serializable {
         return this.enfermeroId;
     }
     
-    public void setEnfermeroId(Long enfermeroId) {
-        this.enfermeroId = enfermeroId;
-    }
-    public Date getCreatedAt() {
-        return this.createdAt;
-    }
-    
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-    public Date getUpdatedAt() {
-        return this.updatedAt;
-    }
-    
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-
-
 
 }
 
