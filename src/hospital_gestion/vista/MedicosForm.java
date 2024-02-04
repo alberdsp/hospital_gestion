@@ -14,7 +14,7 @@ import hospital_gestion.controlador.MedicosFormController;
 public class MedicosForm extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form NewJInternalFrame
+     * Creamos formulario Medicos 
      */
     public MedicosForm() {
         initComponents();
@@ -68,8 +68,8 @@ public class MedicosForm extends javax.swing.JInternalFrame {
 
         jLabelTelefono3.setText("Nº Colegiado");
 
-        jTextFieldID.setEditable(false);
         jTextFieldID.setText("ID");
+        jTextFieldID.setEnabled(false);
         jTextFieldID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldIDActionPerformed(evt);

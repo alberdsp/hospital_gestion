@@ -5,6 +5,7 @@ import hospital_gestion.vista.MedicosForm;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Session;
@@ -32,41 +33,6 @@ public class MedicosFormController {
         configurarListeners();
     }
 
-    // Método para guardar un médico en la base de datos
-    public boolean guardarMedico(Medicos medico) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
-
-        try {
-            transaction = session.beginTransaction();
-            
-            
-            
-            if (medico.getId()==null){
-            session.save(medico);
-            }else{
-       //      session.save(medico);
-            session.merge(medico);
-       
-            }
-            
-                   
-            transaction.commit();
-            
-            cargarMedicosEnTabla( medicosForm.jTableMedicos);
-            return true;
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-                System.out.println(e);
-            }
-            e.printStackTrace();
-            return false;
-        } finally {
-            session.close();
-        }
-    }
-
     
     
     private void configurarListeners() {
@@ -89,9 +55,27 @@ public class MedicosFormController {
         });
            
            
-           // Agregar un ActionListener para el botón "Grabar"
+                 // Agregar un ActionListener para el botón "Borrar"
+           medicosForm.jButtonEliminar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               // Obtenemos los datos y borramos
+                Medicos medico = obtenerDatosDelFormulario();
+                boolean exito = eliminarMedico(medico);
+                
+                // comprobamos si se borró
+                if (exito) {
+                    // Éxito:
+                } else {
+                    // Error: 
+                }
+            }
+        });
+             
+          
            
-              
+          
+                  
           // Agregar ActionListener a la tabla para detectar la selección de fila
             medicosForm.jTableMedicos.getSelectionModel().addListSelectionListener(e -> {
                 if (!e.getValueIsAdjusting()) {
@@ -99,12 +83,55 @@ public class MedicosFormController {
                 cargarFilaSelect();
             }
         });
-           
-           
-           
+         
+            
+            
     }
+     
+   /**
+    *  Método para guardar en la base de datos o actualizar
+    * @param medico  recibe un objeto médico 
+    * @return  devuelve tru o false si se guarda con éxito
+    */
     
     
+    public boolean guardarMedico(Medicos medico) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+
+        try {
+            transaction = session.beginTransaction();
+            
+            
+            // si no tiene id entendemos que es nuevo
+            
+            if (medico.getId()==null){
+            session.save(medico);
+            }else{
+            // si tiene hacemos merge para update
+            session.merge(medico);
+       
+            }
+            
+                   
+            transaction.commit();
+            
+            cargarMedicosEnTabla( medicosForm.jTableMedicos);
+            
+            JOptionPane.showMessageDialog(null, "Médico grabado corréctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
+            return true;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+                System.out.println(e);
+            }
+            e.printStackTrace();
+            return false;
+        } finally {
+            session.close();
+        }
+    }
+
     
 
     /**
@@ -113,24 +140,39 @@ public class MedicosFormController {
      * @return  true o false si fue exitoso
      */
     
-    public boolean eliminarMedico(long id) {
+    public boolean eliminarMedico(Medicos medico) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
 
+
         try {
             transaction = session.beginTransaction();
-            Medicos medico = (Medicos) session.get(Medicos.class, id);
-            if (medico != null) {
-                session.delete(medico);
-                transaction.commit();
-                return true;
+            
+            
+            
+            if (medico.getId()==null){
+              // no hacemos nada si es nulo
+            }else{
+
+            session.delete(medico);
             }
-            return false;
+            
+                   
+            transaction.commit();
+            
+            cargarMedicosEnTabla( medicosForm.jTableMedicos);
+            
+             JOptionPane.showMessageDialog(null, "Médico borrado corréctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
+
+            return true;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
+                System.out.println(e);
             }
             e.printStackTrace();
+              // Mostrar un mensaje de alerta
+             JOptionPane.showMessageDialog(null, "No se puede borrar el médico, tiene citas asociadas", "Alerta", JOptionPane.WARNING_MESSAGE);
             return false;
         } finally {
             session.close();
