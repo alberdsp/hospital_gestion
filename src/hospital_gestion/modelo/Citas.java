@@ -1,5 +1,5 @@
 package hospital_gestion.modelo;
-// Generated 02-feb-2024 1:53:02 by Hibernate Tools 4.3.1
+// Generated 03-feb-2024 18:42:45 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -14,8 +14,6 @@ public class Citas  implements java.io.Serializable {
      private Medicos medicos;
      private Pacientes pacientes;
      private Date fecha;
-     private Long enfermeroId;
-
 
     public Citas() {
     }
@@ -28,9 +26,8 @@ public class Citas  implements java.io.Serializable {
        this.medicos = medicos;
        this.pacientes = pacientes;
        this.fecha = fecha;
-      
- 
     }
+   
     public Long getId() {
         return this.id;
     }
@@ -59,10 +56,9 @@ public class Citas  implements java.io.Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    public Long getEnfermeroId() {
-        return this.enfermeroId;
-    }
-    
+
+
+
 
 }
 

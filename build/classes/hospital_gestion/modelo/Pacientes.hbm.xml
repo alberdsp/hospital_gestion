@@ -1,16 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 02-feb-2024 1:53:03 by Hibernate Tools 4.3.1 -->
+<!-- Generated 03-feb-2024 18:42:45 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="hospital_gestion.modelo.Pacientes" table="pacientes" catalog="hospital" optimistic-lock="version">
         <id name="id" type="java.lang.Long">
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="medicos" class="hospital_gestion.modelo.Medicos" fetch="select">
-            <column name="medico_id" />
-        </many-to-one>
         <property name="sip" type="string">
             <column name="sip" length="10" not-null="true" unique="true" />
         </property>
@@ -37,30 +34,6 @@
         </property>
         <property name="localidad" type="string">
             <column name="localidad" length="191" />
-        </property>
-        <property name="calle" type="string">
-            <column name="calle" length="191" />
-        </property>
-        <property name="numero" type="string">
-            <column name="numero" length="191" />
-        </property>
-        <property name="puerta" type="string">
-            <column name="puerta" length="191" />
-        </property>
-        <property name="piso" type="string">
-            <column name="piso" length="191" />
-        </property>
-        <property name="enfermeroId" type="java.lang.Long">
-            <column name="enfermero_id" />
-        </property>
-        <property name="userId" type="java.lang.Long">
-            <column name="user_id" />
-        </property>
-        <property name="createdAt" type="timestamp">
-            <column name="created_at" length="19" />
-        </property>
-        <property name="updatedAt" type="timestamp">
-            <column name="updated_at" length="19" />
         </property>
         <set name="citases" table="citas" inverse="true" lazy="true" fetch="select">
             <key>

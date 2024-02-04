@@ -1,5 +1,5 @@
 package hospital_gestion.modelo;
-// Generated 02-feb-2024 1:53:02 by Hibernate Tools 4.3.1
+// Generated 03-feb-2024 18:42:45 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -22,6 +22,7 @@ public class Pacientes  implements java.io.Serializable {
      private String sexo;
      private Date fechaNacimiento;
      private String localidad;
+     private Set citases = new HashSet(0);
 
     public Pacientes() {
     }
@@ -33,8 +34,7 @@ public class Pacientes  implements java.io.Serializable {
         this.nombre = nombre;
         this.apellido1 = apellido1;
     }
-    public Pacientes(String sip, String dni, String nombre, String apellido1, String apellido2, String telefono, String sexo, Date fechaNacimiento, String localidad) {
-    
+    public Pacientes(String sip, String dni, String nombre, String apellido1, String apellido2, String telefono, String sexo, Date fechaNacimiento, String localidad, Set citases) {
        this.sip = sip;
        this.dni = dni;
        this.nombre = nombre;
@@ -44,7 +44,7 @@ public class Pacientes  implements java.io.Serializable {
        this.sexo = sexo;
        this.fechaNacimiento = fechaNacimiento;
        this.localidad = localidad;
-
+       this.citases = citases;
     }
    
     public Long getId() {
@@ -54,7 +54,6 @@ public class Pacientes  implements java.io.Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-   
     public String getSip() {
         return this.sip;
     }
@@ -118,7 +117,14 @@ public class Pacientes  implements java.io.Serializable {
     public void setLocalidad(String localidad) {
         this.localidad = localidad;
     }
-   
+    public Set getCitases() {
+        return this.citases;
+    }
+    
+    public void setCitases(Set citases) {
+        this.citases = citases;
+    }
+
 
 
 

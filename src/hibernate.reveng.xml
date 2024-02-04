@@ -41,7 +41,7 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="hospital"/>
-  <table-filter match-name="pacientes"/>
   <table-filter match-name="citas"/>
   <table-filter match-name="medicos"/>
+  <table-filter match-name="pacientes"/>
 </hibernate-reverse-engineering>

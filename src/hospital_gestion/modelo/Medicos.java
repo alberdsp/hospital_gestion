@@ -1,8 +1,7 @@
 package hospital_gestion.modelo;
-// Generated 02-feb-2024 1:53:02 by Hibernate Tools 4.3.1
+// Generated 03-feb-2024 18:42:45 by Hibernate Tools 4.3.1
 
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,21 +18,26 @@ public class Medicos  implements java.io.Serializable {
      private String apellido1;
      private String apellido2;
      private String telefono;
-
+     private Set citases = new HashSet(0);
 
     public Medicos() {
     }
 
 	
-
-    public Medicos(String numeroColegiado, String dni, String nombre, String apellido1, String apellido2, String telefono) {
+    public Medicos(String numeroColegiado, String dni, String nombre, String apellido1) {
+        this.numeroColegiado = numeroColegiado;
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellido1 = apellido1;
+    }
+    public Medicos(String numeroColegiado, String dni, String nombre, String apellido1, String apellido2, String telefono, Set citases) {
        this.numeroColegiado = numeroColegiado;
        this.dni = dni;
        this.nombre = nombre;
        this.apellido1 = apellido1;
        this.apellido2 = apellido2;
        this.telefono = telefono;
-
+       this.citases = citases;
     }
    
     public Long getId() {
@@ -85,7 +89,17 @@ public class Medicos  implements java.io.Serializable {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-  
+    public Set getCitases() {
+        return this.citases;
+    }
+    
+    public void setCitases(Set citases) {
+        this.citases = citases;
+    }
+
+
+
+
 }
 
 
