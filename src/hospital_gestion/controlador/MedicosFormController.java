@@ -33,7 +33,7 @@ public class MedicosFormController {
         configurarListeners();
     }
 
-    
+    // aquí configuramos todos los listeners de la aplicación
     
     private void configurarListeners() {
 
@@ -53,6 +53,18 @@ public class MedicosFormController {
                 }
             }
         });
+           
+           
+           
+                 // Agregar un ActionListener para el botón "Nuevo"
+           medicosForm.jButtonNuevo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                    setearForm();
+            }
+        });
+           
+           
            
            
                  // Agregar un ActionListener para el botón "Borrar"
@@ -211,6 +223,8 @@ public class MedicosFormController {
         // Método para obtener los datos del formulario y crear un objeto Medicos
     private Medicos obtenerDatosDelFormulario() {
         // Obtener los valores de los campos de texto u otros componentes del formulario
+         
+        
         String id = medicosForm.jTextFieldID.getText();
         String nombre = medicosForm.jTextFieldNombre.getText();
         String apellido1 = medicosForm.jTextFieldApellido1.getText();
@@ -223,7 +237,11 @@ public class MedicosFormController {
         
         Medicos medico = new Medicos();
         
+        if (id.equals("")){
+        
+        }else{
         medico.setId(Long.parseLong(id));
+        }
         medico.setNombre(nombre);
         medico.setApellido1(apellido1);
         medico.setApellido2(apellido2);
@@ -255,6 +273,7 @@ public class MedicosFormController {
         Object ncolegiadoValue = model.getValueAt(selectedRow, 6);
 
         // Establece los valores en los campos de edición
+      
         medicosForm.jTextFieldID.setText(String.valueOf(idValue));
         medicosForm.jTextFieldNombre.setText(String.valueOf(nombreValue));
         medicosForm.jTextFieldApellido1.setText(String.valueOf(apellido1Value));
@@ -263,7 +282,34 @@ public class MedicosFormController {
         medicosForm.jTextFieldDni.setText(String.valueOf(dniValue));
         medicosForm.jTextFieldNcolegiado.setText(String.valueOf(ncolegiadoValue));
     }
+    
+    
+    
+    
+    
+    
 }
 
+    // Método para setear el formulario de edición
+    
+    
+       public void setearForm (){
+       
+        // seteamos a ""   
+
+        medicosForm.jTextFieldID.setText(String.valueOf(""));
+        medicosForm.jTextFieldNombre.setText(String.valueOf(""));
+        medicosForm.jTextFieldApellido1.setText(String.valueOf(""));
+        medicosForm.jTextFieldApellido2.setText(String.valueOf(""));
+        medicosForm.jTextFieldTelefono.setText(String.valueOf(""));
+        medicosForm.jTextFieldDni.setText(String.valueOf(""));
+        medicosForm.jTextFieldNcolegiado.setText(String.valueOf(""));
+       
+       
+       
+       
+       }
+    
+    
     
 }
