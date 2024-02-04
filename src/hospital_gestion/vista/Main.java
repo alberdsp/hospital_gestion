@@ -5,6 +5,7 @@
  */
 package hospital_gestion.vista;
 
+import hospital_gestion.controlador.MedicosFormController;
 import javax.swing.JFrame;
 
 
@@ -194,12 +195,10 @@ public class Main extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
       MedicosForm medicosForm = new MedicosForm();
    
-    
-
-       
-
-   jDesktopPane.add(medicosForm);
-   medicosForm.setVisible(true);
+          
+     MedicosFormController medicosformcontroller = new MedicosFormController(medicosForm);
+     jDesktopPane.add(medicosForm);
+     medicosForm.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 

@@ -68,6 +68,7 @@ public class MedicosForm extends javax.swing.JInternalFrame {
 
         jLabelTelefono3.setText("Nº Colegiado");
 
+        jTextFieldID.setEditable(false);
         jTextFieldID.setText("ID");
         jTextFieldID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -291,7 +292,7 @@ public class MedicosForm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabelTelefono3;
     private javax.swing.JPanel jPanelDetalle;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableMedicos;
+    public javax.swing.JTable jTableMedicos;
     public javax.swing.JTextField jTextFieldApellido1;
     public javax.swing.JTextField jTextFieldApellido2;
     public javax.swing.JTextField jTextFieldDni;
