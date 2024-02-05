@@ -1,5 +1,6 @@
 package hospital_gestion.controlador;
 
+import hospital_gestion.modelo.FiltroMedicos;
 import hospital_gestion.modelo.Medicos;
 import hospital_gestion.vista.MedicosForm;
 import java.awt.event.ActionEvent;
@@ -12,6 +13,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+
+
+
 
 public class MedicosFormController {
 
@@ -53,6 +57,38 @@ public class MedicosFormController {
                 }
             }
         });
+           
+           
+           
+           
+           
+                          // Agregar un ActionListener para el botón "Filtrar"
+           medicosForm.jButtonFiltro.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                
+                // TODO   armar bien el filtro para pasar objeto con sus paámtros
+                
+                // armamos los filtros
+                
+                String nombre = medicosForm.jTextFieldNombre.getText();
+                String apellido1 = medicosForm.jTextFieldApellido1.getText();
+                String numeroColegiado = medicosForm.jTextFieldNcolegiado.getText();
+                
+                
+                
+                FiltroMedicos filtro = new FiltroMedicos();
+                filtro.setNombre(nombre);
+                filtro.setApellido1(apellido1);
+                filtro.setNumeroColegiado(numeroColegiado);
+                
+                   // filtramos pasando el objeto con los filtros
+                    filtrarMedicos(filtro);
+            }
+        });
+           
+           
            
            
            
@@ -310,6 +346,62 @@ public class MedicosFormController {
        
        }
     
+       
+       
+       /**
+        * Método para filtrar el formulário médicos.
+        * 
+        */
+       
+       public void filtrarMedicos( FiltroMedicos filtro){
+            Session session = sessionFactory.openSession();
+           
+              String hql = "FROM Medicos m WHERE (:nombre IS NULL OR m.nombre = :nombre) " +
+             "AND (:apellido1 IS NULL OR m.apellido1 = :apellido1 " +
+             "OR m.numeroColegiado = :numeroColegiado)";
+
+        
+            // montamos un objeto Medicos list con la
+             List<Medicos> medicosList = session.createQuery(hql)       
+            .setParameter("nombre", filtro.getNombre())
+            .setParameter("apellido1", filtro.getApellido1())
+            .setParameter("numeroColegiado", filtro.getNumeroColegiado()).list();
+            
+            
+            // ejecutamos la consulta y la pasamos a lista
+          //   List<Medicos> medicosList = query.getResultList();
+            
+           
+           JTable table = new JTable();
+           table = medicosForm.jTableMedicos;
+                
+       
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
+
+        // Define las cabeceras de la tabla
+    String[] columnNames = {"ID", "Nombre", "Apellido1", "Apellido2", "Teléfono", "DNI", "Nº Colegiado"};
+    model.setColumnIdentifiers(columnNames);
+                
+                
+        for (Medicos medico : medicosList) {
+            Object[] row = {
+                    medico.getId(),
+                    medico.getNombre(),
+                    medico.getApellido1(),
+                    medico.getApellido2(),
+                    medico.getTelefono(),
+                    medico.getDni(),
+                    medico.getNumeroColegiado()
+            };
+            model.addRow(row);
+        }
+
+        session.close();
+       
+       
+       
+       }
     
     
 }

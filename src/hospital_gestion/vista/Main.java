@@ -6,6 +6,8 @@
 package hospital_gestion.vista;
 
 import hospital_gestion.controlador.MedicosFormController;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 
@@ -193,12 +195,23 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-      MedicosForm medicosForm = new MedicosForm();
-   
-          
-     MedicosFormController medicosformcontroller = new MedicosFormController(medicosForm);
-     jDesktopPane.add(medicosForm);
-     medicosForm.setVisible(true);
+  
+        
+        // creamos un hilo para que la ejecución no haga lenta la aplicación
+        Thread thread = new Thread(() -> {
+        MedicosForm medicosForm = new MedicosForm();
+        
+        // centramos el formulario al centro de la ventana
+         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - medicosForm.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - medicosForm.getHeight()) / 2);
+        medicosForm.setLocation(x, y);
+        // cargamos el controlador
+        MedicosFormController medicosFormController = new MedicosFormController(medicosForm);
+        jDesktopPane.add(medicosForm);
+        medicosForm.setVisible(true);
+    });
+    thread.start();
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
