@@ -192,7 +192,7 @@ public class Main extends javax.swing.JFrame {
    
              
         // creamos un hilo para que la ejecución no haga lenta la aplicación
-        Thread thread = new Thread(() -> {
+        Thread threadP = new Thread(() -> {
         PacientesForm pacientesForm = new PacientesForm();
         
         // centramos el formulario al centro de la ventana
@@ -205,7 +205,7 @@ public class Main extends javax.swing.JFrame {
         jDesktopPane.add(pacientesForm);
         pacientesForm.setVisible(true);
     });
-    thread.start();
+    threadP.start();
      
           
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -214,7 +214,7 @@ public class Main extends javax.swing.JFrame {
   
         
         // creamos un hilo para que la ejecución no haga lenta la aplicación
-        Thread thread = new Thread(() -> {
+        Thread threadM = new Thread(() -> {
         MedicosForm medicosForm = new MedicosForm();
         
         // centramos el formulario al centro de la ventana
@@ -227,7 +227,7 @@ public class Main extends javax.swing.JFrame {
         jDesktopPane.add(medicosForm);
         medicosForm.setVisible(true);
     });
-    thread.start();
+    threadM.start();
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
