@@ -6,6 +6,7 @@
 package hospital_gestion.vista;
 
 import hospital_gestion.controlador.MedicosFormController;
+import hospital_gestion.controlador.PacientesFormController;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
@@ -189,7 +190,22 @@ public class Main extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
    
-          
+             
+        // creamos un hilo para que la ejecución no haga lenta la aplicación
+        Thread thread = new Thread(() -> {
+        PacientesForm pacientesForm = new PacientesForm();
+        
+        // centramos el formulario al centro de la ventana
+         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - pacientesForm.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - pacientesForm.getHeight()) / 2);
+        pacientesForm.setLocation(x, y);
+        // cargamos el controlador
+        PacientesFormController pacientesFormController = new PacientesFormController(pacientesForm);
+        jDesktopPane.add(pacientesForm);
+        pacientesForm.setVisible(true);
+    });
+    thread.start();
      
           
     }//GEN-LAST:event_jMenuItem1ActionPerformed
