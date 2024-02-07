@@ -5,7 +5,13 @@
  */
 package hospital_gestion.vista;
 
+import com.toedter.calendar.JDateChooser;
 import hospital_gestion.controlador.MedicosFormController;
+import hospital_gestion.modelo.Medicos;
+import hospital_gestion.modelo.Pacientes;
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -13,9 +19,33 @@ import hospital_gestion.controlador.MedicosFormController;
  */
 public class CitasForm extends javax.swing.JInternalFrame {
 
+    public Medicos getMedico() {
+        return medico;
+    }
+
+    public void setMedico(Medicos medico) {
+        this.medico = medico;
+    }
+
+    public Pacientes getPaciente() {
+        return paciente;
+    }
+
     /**
      * Creamos formulario Medicos 
      */
+    public void setPaciente(Pacientes paciente) {
+        this.paciente = paciente;
+    }
+
+    
+    
+    private Medicos medico;
+    
+    private Pacientes paciente;
+    
+    
+    
     public CitasForm() {
         initComponents();
     }
@@ -38,12 +68,12 @@ public class CitasForm extends javax.swing.JInternalFrame {
         jTextFieldNombrePaciente = new javax.swing.JTextField();
         jTextFieldNombreMedico = new javax.swing.JTextField();
         jTextFieldIDPaciente = new javax.swing.JTextField();
-        jTextFieldIDCita = new javax.swing.JTextField();
+        jTextFieldID = new javax.swing.JTextField();
         jDateFechaCita = new com.toedter.calendar.JDateChooser();
         jButtonBuscaPaciente = new javax.swing.JButton();
         jButtonBuscarMedico = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTablePacientes = new javax.swing.JTable();
+        jTableCitas = new javax.swing.JTable();
         jButtonNuevo = new javax.swing.JButton();
         jButtonGrabar = new javax.swing.JButton();
         jButtonEliminar = new javax.swing.JButton();
@@ -55,7 +85,7 @@ public class CitasForm extends javax.swing.JInternalFrame {
         jButtonReset = new javax.swing.JButton();
         jTextFieldFiltroIDMedico = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jDateFiltroFecha = new com.toedter.calendar.JDateChooser();
+        jDateFiltroFechaFiltro = new com.toedter.calendar.JDateChooser();
         jButtonBuscaPaciente1 = new javax.swing.JButton();
         jButtonBuscarMedico1 = new javax.swing.JButton();
 
@@ -101,11 +131,11 @@ public class CitasForm extends javax.swing.JInternalFrame {
             }
         });
 
-        jTextFieldIDCita.setText("ID");
-        jTextFieldIDCita.setEnabled(false);
-        jTextFieldIDCita.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldID.setText("ID");
+        jTextFieldID.setEnabled(false);
+        jTextFieldID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldIDCitaActionPerformed(evt);
+                jTextFieldIDActionPerformed(evt);
             }
         });
 
@@ -133,7 +163,7 @@ public class CitasForm extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelDetalleLayout.createSequentialGroup()
-                                .addComponent(jTextFieldIDCita, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabelTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(4, 4, 4)
@@ -155,7 +185,7 @@ public class CitasForm extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDetalleLayout.createSequentialGroup()
                         .addGroup(jPanelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextFieldIDCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabelID)
                                 .addComponent(jLabelTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanelDetalleLayout.createSequentialGroup()
@@ -179,7 +209,7 @@ public class CitasForm extends javax.swing.JInternalFrame {
                 .addGap(104, 104, 104))
         );
 
-        jTablePacientes.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCitas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -190,7 +220,7 @@ public class CitasForm extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTablePacientes);
+        jScrollPane1.setViewportView(jTableCitas);
 
         jButtonNuevo.setText("Nuevo");
 
@@ -236,7 +266,7 @@ public class CitasForm extends javax.swing.JInternalFrame {
                                     .addGap(26, 26, 26)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel1)
-                                        .addComponent(jDateFiltroFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jDateFiltroFechaFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(68, 68, 68)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -274,7 +304,7 @@ public class CitasForm extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jDateFiltroFecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jDateFiltroFechaFiltro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButtonFiltro)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -307,9 +337,9 @@ public class CitasForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonGrabarActionPerformed
 
-    private void jTextFieldIDCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDCitaActionPerformed
+    private void jTextFieldIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldIDCitaActionPerformed
+    }//GEN-LAST:event_jTextFieldIDActionPerformed
 
     private void jTextFieldIDPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDPacienteActionPerformed
         // TODO add your handling code here:
@@ -327,19 +357,95 @@ public class CitasForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldIDMedicoActionPerformed
 
+    public JButton getjButtonBuscaPaciente() {
+        return jButtonBuscaPaciente;
+    }
+
+    public JButton getjButtonBuscaPaciente1() {
+        return jButtonBuscaPaciente1;
+    }
+
+    public JButton getjButtonBuscarMedico() {
+        return jButtonBuscarMedico;
+    }
+
+    public JButton getjButtonBuscarMedico1() {
+        return jButtonBuscarMedico1;
+    }
+
+    public JButton getjButtonEliminar() {
+        return jButtonEliminar;
+    }
+
+    public JButton getjButtonFiltro() {
+        return jButtonFiltro;
+    }
+
+    public JButton getjButtonGrabar() {
+        return jButtonGrabar;
+    }
+
+    public JButton getjButtonNuevo() {
+        return jButtonNuevo;
+    }
+
+    public JButton getjButtonReset() {
+        return jButtonReset;
+    }
+
+    public JDateChooser getjDateFechaCita() {
+        return jDateFechaCita;
+    }
+
+    public JDateChooser getjDateFiltroFechaFiltro() {
+        return jDateFiltroFechaFiltro;
+    }
+
+    public JTable getjTableCitas() {
+        return jTableCitas;
+    }
+
+    public JTextField getjTextFieldFiltroIDMedico() {
+        return jTextFieldFiltroIDMedico;
+    }
+
+    public JTextField getjTextFieldFiltroIDPaciente() {
+        return jTextFieldFiltroIDPaciente;
+    }
+
+    public JTextField getjTextFieldID() {
+        return jTextFieldID;
+    }
+
+    public JTextField getjTextFieldIDMedico() {
+        return jTextFieldIDMedico;
+    }
+
+    public JTextField getjTextFieldIDPaciente() {
+        return jTextFieldIDPaciente;
+    }
+
+    public JTextField getjTextFieldNombreMedico() {
+        return jTextFieldNombreMedico;
+    }
+
+    public JTextField getjTextFieldNombrePaciente() {
+        return jTextFieldNombrePaciente;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscaPaciente;
     private javax.swing.JButton jButtonBuscaPaciente1;
     private javax.swing.JButton jButtonBuscarMedico;
     private javax.swing.JButton jButtonBuscarMedico1;
-    public javax.swing.JButton jButtonEliminar;
-    public javax.swing.JButton jButtonFiltro;
-    public javax.swing.JButton jButtonGrabar;
-    public javax.swing.JButton jButtonNuevo;
-    public javax.swing.JButton jButtonReset;
+    private javax.swing.JButton jButtonEliminar;
+    private javax.swing.JButton jButtonFiltro;
+    private javax.swing.JButton jButtonGrabar;
+    private javax.swing.JButton jButtonNuevo;
+    private javax.swing.JButton jButtonReset;
     private com.toedter.calendar.JDateChooser jDateFechaCita;
-    private com.toedter.calendar.JDateChooser jDateFiltroFecha;
+    private com.toedter.calendar.JDateChooser jDateFiltroFechaFiltro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -350,10 +456,10 @@ public class CitasForm extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanelDetalle;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    public javax.swing.JTable jTablePacientes;
-    public javax.swing.JTextField jTextFieldFiltroIDMedico;
-    public javax.swing.JTextField jTextFieldFiltroIDPaciente;
-    private javax.swing.JTextField jTextFieldIDCita;
+    private javax.swing.JTable jTableCitas;
+    private javax.swing.JTextField jTextFieldFiltroIDMedico;
+    private javax.swing.JTextField jTextFieldFiltroIDPaciente;
+    private javax.swing.JTextField jTextFieldID;
     private javax.swing.JTextField jTextFieldIDMedico;
     private javax.swing.JTextField jTextFieldIDPaciente;
     private javax.swing.JTextField jTextFieldNombreMedico;
@@ -364,27 +470,5 @@ public class CitasForm extends javax.swing.JInternalFrame {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Object getjTextFieldNombre() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public Object getjTextFieldApellido1() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public Object getjTextFieldApellido2() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public Object getjTextFieldTelefono() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public Object getjTextFieldDni() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public Object getjTextFieldNcolegiado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 }

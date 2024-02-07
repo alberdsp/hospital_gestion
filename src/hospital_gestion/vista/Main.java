@@ -5,6 +5,7 @@
  */
 package hospital_gestion.vista;
 
+import hospital_gestion.controlador.CitasFormController;
 import hospital_gestion.controlador.MedicosFormController;
 import hospital_gestion.controlador.PacientesFormController;
 import java.awt.Dimension;
@@ -50,6 +51,7 @@ public class Main extends javax.swing.JFrame {
         jDesktopPane = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         fileMenu = new javax.swing.JMenu();
@@ -88,6 +90,14 @@ public class Main extends javax.swing.JFrame {
         );
 
         jMenu4.setText("Gestión");
+
+        jMenuItem3.setText("Citas");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem3);
 
         jMenuItem1.setText("Pacientes");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -231,6 +241,25 @@ public class Main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+         
+        // creamos un hilo para que la ejecución no haga lenta la aplicación
+        Thread threadC = new Thread(() -> {
+        CitasForm citasForm = new CitasForm();
+        
+        // centramos el formulario al centro de la ventana
+         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - citasForm.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - citasForm.getHeight()) / 2);
+        citasForm.setLocation(x, y);
+        // cargamos el controlador
+        CitasFormController citasFormController = new CitasFormController(citasForm);
+        jDesktopPane.add(citasForm);
+        citasForm.setVisible(true);
+    });
+    threadC.start();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -284,6 +313,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem pasteMenuItem;
