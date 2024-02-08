@@ -47,7 +47,7 @@ public class PacientesFormController {
             public void actionPerformed(ActionEvent e) {
                 // Obtenemos los datos y grabamos
                 Pacientes paciente = obtenerDatosDelFormulario();
-                boolean exito = guardarMedico(paciente);
+                boolean exito = guardarPaciente(paciente);
 
                 // comprobamos si se grabó
                 if (exito) {
@@ -110,7 +110,7 @@ public class PacientesFormController {
             public void actionPerformed(ActionEvent e) {
                 // Obtenemos los datos y borramos
                 Pacientes paciente = obtenerDatosDelFormulario();
-                boolean exito = eliminarMedico(paciente);
+                boolean exito = eliminarPaciente(paciente);
 
                 // comprobamos si se borró
                 if (exito) {
@@ -137,7 +137,7 @@ public class PacientesFormController {
      * @param paciente recibe un objeto médico
      * @return devuelve tru o false si se guarda con éxito
      */
-    public boolean guardarMedico(Pacientes paciente) {
+    public boolean guardarPaciente(Pacientes paciente) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
 
@@ -177,7 +177,7 @@ public class PacientesFormController {
      * @param id pasamos el id a borrar
      * @return true o false si fue exitoso
      */
-    public boolean eliminarMedico(Pacientes paciente) {
+    public boolean eliminarPaciente(Pacientes paciente) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
 
@@ -215,7 +215,7 @@ public class PacientesFormController {
     // Método para cargar la lista de médicos en una tabla
     public void cargarPacientesEnTabla(JTable table) {
         Session session = sessionFactory.openSession();
-        List<Pacientes> pacientesList = session.createQuery("from Pacientes").list();
+        List<Pacientes> pacientesList = session.createQuery("from Pacientes").setMaxResults(50).list();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
 
@@ -333,7 +333,7 @@ public class PacientesFormController {
                 .setParameter("dni", filtro.getDni()).list();
 
         // ejecutamos la consulta y la pasamos a lista
-        //   List<Pacientes> pacientesList = query.getResultList();
+     
         JTable table = new JTable();
         table = pacientesForm.jTablePacientes;
 
@@ -363,6 +363,8 @@ public class PacientesFormController {
     }
     
     
+    
+    // establecemos los filtros en blanco
        private void setearFiltro() {
                 
            pacientesForm.jTextFieldFiltroNombre.setText("");
@@ -377,5 +379,12 @@ public class PacientesFormController {
            
                       
             }
+       
+   
+       
+       
+       
+       
+       
 
 }

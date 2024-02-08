@@ -209,7 +209,7 @@ public class MedicosFormController {
     // Método para cargar la lista de médicos en una tabla
     public void cargarMedicosEnTabla(JTable table) {
         Session session = sessionFactory.openSession();
-        List<Medicos> medicosList = session.createQuery("from Medicos").list();
+        List<Medicos> medicosList = session.createQuery("from Medicos").setMaxResults(50).list();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
 

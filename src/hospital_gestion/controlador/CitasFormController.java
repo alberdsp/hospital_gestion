@@ -66,21 +66,29 @@ public class CitasFormController {
         citasForm.getjButtonFiltro().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 // armamos los filtros
                 String idpaciente = citasForm.getjTextFieldFiltroIDPaciente().getText();
                 String idmedico = citasForm.getjTextFieldFiltroIDMedico().getText();
-                Date filtrofecha = (Date) citasForm.getjSpinnerFechaFiltro().getValue();
+                Medicos medico = new Medicos();
+                Pacientes paciente = new Pacientes();
+                // si los valores vacios ponemos a null
+                if (idmedico.equals("")) {
+                    medico = null;
+                } else {
+                    medico = buscarMedico(Long.parseLong(idmedico));
+                }
+                if (idpaciente.equals("")) {
 
-                // Reemplazamos las cadenas vacías con null
-                idpaciente = (idpaciente.isEmpty()) ? null : idpaciente;
-                idmedico = (idmedico.isEmpty()) ? null : idpaciente;
-                filtrofecha = (filtrofecha.equals(null)) ? null : filtrofecha;
+                    paciente = null;
+                } else {
+                    paciente = buscarPaciente(Long.parseLong(idpaciente));
+                }
+              
 
                 FiltroCitas filtro = new FiltroCitas();
-                filtro.setIdpaciente(idpaciente);
-                filtro.setIdmedico(idmedico);
-                filtro.setFechaCita(filtrofecha);
+                filtro.setPaciente(paciente);
+                filtro.setMedico(medico);
+           
 
                 // filtramos pasando el objeto con los filtros
                 filtrarCitas(filtro);
@@ -132,23 +140,27 @@ public class CitasFormController {
     }
 
     /**
-     * Método para guardar en la base de datos o actualizar
+     * Método para guardar en la base de datos o actualizar cita
      *
-     * @param cita recibe un objeto médico
+     * @param cita recibe un objeto cita
      * @return devuelve tru o false si se guarda con éxito
      */
     public boolean guardarCita(Citas cita) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
 
+        // si viene con id actualizamos sino creamos nueva
         try {
             transaction = session.beginTransaction();
 
             // si no tiene id entendemos que es nuevo
             if (cita.getId() == null) {
+
                 session.save(cita);
+
             } else {
                 // si tiene hacemos merge para update
+
                 session.merge(cita);
 
             }
@@ -221,7 +233,7 @@ public class CitasFormController {
         model.setRowCount(0);
 
         // Define las cabeceras de la tabla
-        String[] columnNames = {"ID", "Fecha", "ID Paciente", "Paciente","ID Medico", "Medico"};
+        String[] columnNames = {"ID", "Fecha", "ID Paciente", "Paciente", "ID Medico", "Medico"};
         model.setColumnIdentifiers(columnNames);
 
         for (Citas cita : citasList) {
@@ -239,10 +251,9 @@ public class CitasFormController {
                 cita.getPacientes().getId(),
                 cita.getPacientes().getNombre() + " " + cita.getPacientes().getApellido1(),
                 cita.getMedicos().getId(),
-                cita.getMedicos().getNombre() + " " + cita.getMedicos().getApellido1(), 
+                cita.getMedicos().getNombre() + " " + cita.getMedicos().getApellido1(),
                 cita.getPacientes(),
-                cita.getMedicos(),
-            //      cita.getMedicos().getNombre(),
+                cita.getMedicos(), //      cita.getMedicos().getNombre(),
             };
             model.addRow(row);
         }
@@ -252,35 +263,18 @@ public class CitasFormController {
 
     // Método para obtener los datos del formulario y crear un objeto Citas
     private Citas obtenerDatosDelFormulario() {
-        // Obtener los valores de los campos de texto
-
-        // Define el formato de fecha y hora
-        String id = citasForm.getjTextFieldID().getText();
-        Medicos medico = citasForm.getMedico();
-        Pacientes paciente = citasForm.getPaciente();
-
-        try {
-            // Obtenemos el valor del Spinner como un objeto
-            Object valorSpinner = citasForm.getjSpinnerFechaCita().getValue();
-
-            // Convierte el valor del Spinner a String
-            String fechaHoraString = valorSpinner.toString();
-
-            // Define el formato de fecha y hora
-            SimpleDateFormat formatoFechaHora = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-
-            // Parsea la cadena de fecha y hora a un objeto Date
-            Date fechaHora = formatoFechaHora.parse(fechaHoraString);
-
-           
-          
-        } catch (ParseException e) {
-            // Maneja la excepción si la cadena no puede ser parseada
-            e.printStackTrace();
-        }
 
         // Crear un objeto Citas con los datos obtenidos
         Citas cita = new Citas();
+        // Obtener los valores de los campos de texto
+        String id = citasForm.getjTextFieldID().getText();
+        String idpaciente = citasForm.getjTextFieldIDPaciente().getText();
+        String idmedico = citasForm.getjTextFieldIDMedico().getText();
+        Date fecha = (Date) citasForm.getjSpinnerFechaCita().getValue();
+
+        cita.setFecha(fecha); // Maneja la excepción si la cadena no puede ser parseada
+        cita.setPacientes(buscarPaciente(Long.parseLong(idpaciente)));
+        cita.setMedicos(buscarMedico(Long.parseLong(idmedico)));
 
         if (id.equals("")) {
 
@@ -288,48 +282,44 @@ public class CitasFormController {
             cita.setId(Long.parseLong(id));
         }
 
-        
-        cita.setMedicos(medico);
-        cita.setPacientes(paciente);
-
         return cita;
     }
 
     // Método para cargar los datos de la fila seleccionada en los campos de edición
     public void cargarFilaSelect() {
- int selectedRow = citasForm.getjTableCitas().getSelectedRow();
+        int selectedRow = citasForm.getjTableCitas().getSelectedRow();
 
-    // Verifica si se ha seleccionado una fila
-    if (selectedRow != -1) {
-        DefaultTableModel model = (DefaultTableModel) citasForm.getjTableCitas().getModel();
+        // Verifica si se ha seleccionado una fila
+        if (selectedRow != -1) {
+            DefaultTableModel model = (DefaultTableModel) citasForm.getjTableCitas().getModel();
 
-        // Obtiene los valores de las columnas de la fila seleccionada
-        Object id = model.getValueAt(selectedRow, 0);
-        Object fechacita = model.getValueAt(selectedRow, 1);
-         Object idpaciente = model.getValueAt(selectedRow, 2);
-        Object nomPaciente = model.getValueAt(selectedRow, 3);   
-        Object idmedico = model.getValueAt(selectedRow, 4);
-        Object nomMedico = model.getValueAt(selectedRow, 5);
-        // Establece los valores en los campos de edición
-        citasForm.getjTextFieldID().setText(id.toString());
-        citasForm.getjTextFieldIDPaciente().setText(idpaciente.toString());
-        citasForm.getjTextFieldNombrePaciente().setText(nomPaciente.toString());
-         citasForm.getjTextFieldIDMedico().setText(idmedico.toString());
-        citasForm.getjTextFieldNombreMedico().setText(nomMedico.toString());
+            // Obtiene los valores de las columnas de la fila seleccionada
+            Object id = model.getValueAt(selectedRow, 0);
+            Object fechacita = model.getValueAt(selectedRow, 1);
+            Object idpaciente = model.getValueAt(selectedRow, 2);
+            Object nomPaciente = model.getValueAt(selectedRow, 3);
+            Object idmedico = model.getValueAt(selectedRow, 4);
+            Object nomMedico = model.getValueAt(selectedRow, 5);
+            // Establece los valores en los campos de edición
+            citasForm.getjTextFieldID().setText(id.toString());
+            citasForm.getjTextFieldIDPaciente().setText(idpaciente.toString());
+            citasForm.getjTextFieldNombrePaciente().setText(nomPaciente.toString());
+            citasForm.getjTextFieldIDMedico().setText(idmedico.toString());
+            citasForm.getjTextFieldNombreMedico().setText(nomMedico.toString());
 
-        // Manejo de la fecha de cita
-        try {
-            // Convierte el valor de la fecha de cita a un formato adecuado
-            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-            Date fechaCita = formatoFecha.parse(fechacita.toString());
+            // Manejo de la fecha de cita
+            try {
+                // Convierte el valor de la fecha de cita a un formato adecuado
+                SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                Date fechaCita = formatoFecha.parse(fechacita.toString());
 
-            // Configura el valor del JSpinner con la fecha de cita convertida
-            citasForm.getjSpinnerFechaCita().setValue(fechaCita);
-        } catch (ParseException e) {
-            // Maneja la excepción si la fecha no se puede parsear
-            e.printStackTrace();
+                // Configura el valor del JSpinner con la fecha de cita convertida
+                citasForm.getjSpinnerFechaCita().setValue(fechaCita);
+            } catch (ParseException e) {
+                // Maneja la excepción si la fecha no se puede parsear
+                e.printStackTrace();
+            }
         }
-    }
 
     }
 
@@ -339,27 +329,27 @@ public class CitasFormController {
         // seteamos a ""   
         citasForm.getjTextFieldID().setText(String.valueOf(""));
         citasForm.getjTextFieldIDPaciente().setText(String.valueOf(""));
+        citasForm.getjTextFieldIDPaciente().setEnabled(true);
         citasForm.getjTextFieldIDMedico().setText(String.valueOf(""));
+        citasForm.getjTextFieldIDMedico().setEnabled(true);
         citasForm.getjTextFieldNombreMedico().setText(null);
-
+        citasForm.getjTextFieldNombrePaciente().setText(null);
     }
 
     /**
-     * Método para filtrar el formulário médicos.
+     * Método para filtrar citas.
      *
      */
     public void filtrarCitas(FiltroCitas filtro) {
         Session session = sessionFactory.openSession();
 
-        String hql = "FROM Citas m WHERE (:fecha IS NULL OR m.fecha = :fecha) "
-                + "AND (:idpaciente IS NULL OR m.idpaciente = :idpaciente "
-                + "OR m.idmedico = :idmedico)";
+        String hql = "FROM Citas m WHERE (m.pacientes = :pacientes "
+                + "OR  m.medicos = :medicos)";
 
         // montamos un objeto Citas list con la
         List<Citas> citasList = session.createQuery(hql)
-                .setParameter("fecha", filtro.getFechaCita())
-                .setParameter("idpaciente", filtro.getIdpaciente())
-                .setParameter("idmedico", filtro.getIdmedico()).list();
+                .setParameter("pacientes", filtro.getPaciente())
+                .setParameter("medicos", filtro.getMedico()).list();
 
         // ejecutamos la consulta y la pasamos a lista
         //   List<Citas> citasList = query.getResultList();
@@ -368,35 +358,98 @@ public class CitasFormController {
 
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
-
-        // Define las cabeceras de la tabla
-        String[] columnNames = {"ID", "Fecha", "Paciente", "Medico"};
+ // Define las cabeceras de la tabla
+        String[] columnNames = {"ID", "Fecha", "ID Paciente", "Paciente", "ID Medico", "Medico"};
         model.setColumnIdentifiers(columnNames);
 
         for (Citas cita : citasList) {
+
+            // Obtenemos la fecha de la cita
+            Date fecha = cita.getFecha();
+
+            // Creamos un objeto SimpleDateFormat para formatear la fecha 
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            String fechasalida = outputFormat.format(fecha);
+
             Object[] row = {
                 cita.getId(),
-                cita.getFecha(),
+                fechasalida,
+                cita.getPacientes().getId(),
                 cita.getPacientes().getNombre() + " " + cita.getPacientes().getApellido1(),
-                cita.getMedicos().getNombre() + " " + cita.getMedicos().getApellido1(),};
+                cita.getMedicos().getId(),
+                cita.getMedicos().getNombre() + " " + cita.getMedicos().getApellido1(),
+                cita.getPacientes(),
+                cita.getMedicos(), //      cita.getMedicos().getNombre(),
+            };
             model.addRow(row);
         }
 
         session.close();
     }
 
+    // médodo para setear el filtro en blanco
     private void setearFiltro() {
 
         citasForm.getjTextFieldFiltroIDPaciente().setText("");
         citasForm.getjTextFieldFiltroIDMedico().setText("");
-        citasForm.getjSpinnerFechaFiltro().setValue(null);
-        JTable tabla = new JTable();
 
-        tabla = citasForm.getjTableCitas();
+        
+           JTable tabla = new JTable();
+           
+           tabla = citasForm.getjTableCitas();
+           
 
-        cargarCitasEnTabla(tabla);
+          cargarCitasEnTabla(tabla);
 
     }
 
+    /**
+     * Método para buscar un paciente por id
+     *
+     * @param idpaciente String con id
+     * @return Pacientes objeto
+     */
+    public Pacientes buscarPaciente(Long id) {
+        Session session = sessionFactory.openSession();
+
+        String hql = "FROM Pacientes m WHERE (m.id = :id)";
+
+        // montamos un objeto Medico filtrado
+        List<Pacientes> pacienteList = session.createQuery(hql)
+                .setParameter("id", id).list();
+
+        Pacientes paciente = pacienteList.get(0);
+        session.close();
+
+        return paciente;
+    }
+
+    /**
+     * Método para buscar un médico por id
+     *
+     * @param idmedico String con id
+     * @return Medcicos objeto
+     */
+    public Medicos buscarMedico(Long id) {
+        Session session = sessionFactory.openSession();
+
+        String hql = "FROM Medicos m WHERE (m.id = :id)";
+
+        // montamos un objeto Medico filtrado
+        List<Medicos> medicosList = session.createQuery(hql)
+                .setParameter("id", id).list();
+
+        Medicos medico = medicosList.get(0);
+        Medicos medicoDTO = new Medicos();    
+        
+        medicoDTO.setId(medico.getId());
+        medicoDTO.setNombre(medico.getNombre());
+        medicoDTO.setApellido1(medico.getApellido2());
+        medicoDTO.setNumeroColegiado(medico.getNumeroColegiado());
+
+        session.close();
+
+        return medicoDTO;
+    }
 
 }

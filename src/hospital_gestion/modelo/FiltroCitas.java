@@ -5,19 +5,17 @@
  */
 package hospital_gestion.modelo;
 
-import java.util.Date;
-
 /**
  *  Clase para definir los filtros de citas
  * @author Alber
  */
 public class FiltroCitas {
     
-    private String idpaciente;
+    private Pacientes paciente;
     
-    private String idmedico;
+    private Medicos medico;
     
-    private String fechacita;
+
     
    
     
@@ -26,32 +24,20 @@ public class FiltroCitas {
     public FiltroCitas(){
     }
 
-    public String getIdpaciente() {
-        return idpaciente;
+    public Pacientes getPaciente() {
+        return paciente;
     }
 
-    public void setIdpaciente(String idpaciente) {
-        this.idpaciente = idpaciente;
+    public void setPaciente(Pacientes paciente) {
+        this.paciente = paciente;
     }
 
-    public String getIdmedico() {
-        return idmedico;
+    public Medicos getMedico() {
+        return medico;
     }
 
-    public void setIdmedico(String idmedico) {
-        this.idmedico = idmedico;
+    public void setMedico(Medicos medico) {
+        this.medico = medico;
     }
-
-    public String getFechaCita() {
-        return fechacita;
-    }
-
-    public void setFechaCita(Date fechafiltro) {
-        this.fechacita = fechafiltro.toString();
-    }
-    
-    
-    
-    
     
 }
