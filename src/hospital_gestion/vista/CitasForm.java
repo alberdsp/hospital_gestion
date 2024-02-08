@@ -5,11 +5,12 @@
  */
 package hospital_gestion.vista;
 
-import com.toedter.calendar.JDateChooser;
+
 import hospital_gestion.controlador.MedicosFormController;
 import hospital_gestion.modelo.Medicos;
 import hospital_gestion.modelo.Pacientes;
 import javax.swing.JButton;
+import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -43,6 +44,8 @@ public class CitasForm extends javax.swing.JInternalFrame {
     private Medicos medico;
     
     private Pacientes paciente;
+
+   
     
     
     
@@ -69,9 +72,9 @@ public class CitasForm extends javax.swing.JInternalFrame {
         jTextFieldNombreMedico = new javax.swing.JTextField();
         jTextFieldIDPaciente = new javax.swing.JTextField();
         jTextFieldID = new javax.swing.JTextField();
-        jDateFechaCita = new com.toedter.calendar.JDateChooser();
         jButtonBuscaPaciente = new javax.swing.JButton();
         jButtonBuscarMedico = new javax.swing.JButton();
+        jSpinnerFechaCita = new javax.swing.JSpinner();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCitas = new javax.swing.JTable();
         jButtonNuevo = new javax.swing.JButton();
@@ -85,9 +88,9 @@ public class CitasForm extends javax.swing.JInternalFrame {
         jButtonReset = new javax.swing.JButton();
         jTextFieldFiltroIDMedico = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jDateFiltroFechaFiltro = new com.toedter.calendar.JDateChooser();
         jButtonBuscaPaciente1 = new javax.swing.JButton();
         jButtonBuscarMedico1 = new javax.swing.JButton();
+        jSpinnerFechaFiltro = new javax.swing.JSpinner();
 
         setClosable(true);
         setMaximizable(true);
@@ -143,6 +146,8 @@ public class CitasForm extends javax.swing.JInternalFrame {
 
         jButtonBuscarMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/lupa.png"))); // NOI18N
 
+        jSpinnerFechaCita.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.MINUTE));
+
         javax.swing.GroupLayout jPanelDetalleLayout = new javax.swing.GroupLayout(jPanelDetalle);
         jPanelDetalle.setLayout(jPanelDetalleLayout);
         jPanelDetalleLayout.setHorizontalGroup(
@@ -150,55 +155,47 @@ public class CitasForm extends javax.swing.JInternalFrame {
             .addGroup(jPanelDetalleLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addGroup(jPanelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelDetalleLayout.createSequentialGroup()
-                        .addComponent(jLabelApellido1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                        .addComponent(jTextFieldIDMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFieldNombreMedico, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDetalleLayout.createSequentialGroup()
-                        .addGroup(jPanelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelID, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelDetalleLayout.createSequentialGroup()
-                                .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabelTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(4, 4, 4)
-                                .addComponent(jDateFechaCita, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelDetalleLayout.createSequentialGroup()
-                                .addComponent(jTextFieldIDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelApellido1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelID, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonBuscaPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonBuscarMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(192, 192, 192))
+                    .addGroup(jPanelDetalleLayout.createSequentialGroup()
+                        .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSpinnerFechaCita, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanelDetalleLayout.createSequentialGroup()
+                            .addComponent(jTextFieldIDMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldNombreMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanelDetalleLayout.createSequentialGroup()
+                            .addComponent(jTextFieldIDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jTextFieldNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonBuscarMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonBuscaPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(232, 255, Short.MAX_VALUE))
         );
         jPanelDetalleLayout.setVerticalGroup(
             jPanelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDetalleLayout.createSequentialGroup()
-                .addGroup(jPanelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDetalleLayout.createSequentialGroup()
-                        .addGroup(jPanelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabelID)
-                                .addComponent(jLabelTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanelDetalleLayout.createSequentialGroup()
-                                .addGap(0, 29, Short.MAX_VALUE)
-                                .addComponent(jDateFechaCita, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelNombre)
-                            .addComponent(jTextFieldNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldIDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanelDetalleLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButtonBuscaPaciente)))
+                .addGroup(jPanelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jSpinnerFechaCita)
+                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelID)
+                    .addComponent(jLabelTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelNombre)
+                        .addComponent(jTextFieldNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldIDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonBuscaPaciente))
                 .addGap(15, 15, 15)
                 .addGroup(jPanelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -206,7 +203,7 @@ public class CitasForm extends javax.swing.JInternalFrame {
                         .addComponent(jTextFieldNombreMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jTextFieldIDMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButtonBuscarMedico))
-                .addGap(104, 104, 104))
+                .addGap(90, 90, 90))
         );
 
         jTableCitas.setModel(new javax.swing.table.DefaultTableModel(
@@ -247,6 +244,8 @@ public class CitasForm extends javax.swing.JInternalFrame {
 
         jButtonBuscarMedico1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/lupa.png"))); // NOI18N
 
+        jSpinnerFechaFiltro.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.MINUTE));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -266,8 +265,8 @@ public class CitasForm extends javax.swing.JInternalFrame {
                                     .addGap(26, 26, 26)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel1)
-                                        .addComponent(jDateFiltroFechaFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(68, 68, 68)
+                                        .addComponent(jSpinnerFechaFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(43, 43, 43)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jTextFieldFiltroIDPaciente))
@@ -288,7 +287,7 @@ public class CitasForm extends javax.swing.JInternalFrame {
                                     .addComponent(jButtonEliminar, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jButtonGrabar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButtonNuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(26, Short.MAX_VALUE))))
+                        .addContainerGap(36, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,14 +302,13 @@ public class CitasForm extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jDateFiltroFechaFiltro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButtonFiltro)))
+                                .addComponent(jButtonFiltro))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextFieldFiltroIDPaciente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldFiltroIDMedico, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jTextFieldFiltroIDMedico, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSpinnerFechaFiltro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(jButtonBuscaPaciente1)
                     .addComponent(jButtonBuscarMedico1)
                     .addComponent(jButtonReset))
@@ -318,7 +316,7 @@ public class CitasForm extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -393,14 +391,6 @@ public class CitasForm extends javax.swing.JInternalFrame {
         return jButtonReset;
     }
 
-    public JDateChooser getjDateFechaCita() {
-        return jDateFechaCita;
-    }
-
-    public JDateChooser getjDateFiltroFechaFiltro() {
-        return jDateFiltroFechaFiltro;
-    }
-
     public JTable getjTableCitas() {
         return jTableCitas;
     }
@@ -432,6 +422,22 @@ public class CitasForm extends javax.swing.JInternalFrame {
     public JTextField getjTextFieldNombrePaciente() {
         return jTextFieldNombrePaciente;
     }
+    
+     public JSpinner getjSpinnerFechaCita() {
+        return jSpinnerFechaCita;
+    }
+
+    public void setjSpinnerFechaCita(JSpinner jSpinnerFechaCita) {
+        this.jSpinnerFechaCita = jSpinnerFechaCita;
+    }
+
+    public JSpinner getjSpinnerFechaFiltro() {
+        return jSpinnerFechaFiltro;
+    }
+
+    public void setjSpinnerFechaFiltro(JSpinner jSpinnerFechaFiltro) {
+        this.jSpinnerFechaFiltro = jSpinnerFechaFiltro;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -444,8 +450,6 @@ public class CitasForm extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonGrabar;
     private javax.swing.JButton jButtonNuevo;
     private javax.swing.JButton jButtonReset;
-    private com.toedter.calendar.JDateChooser jDateFechaCita;
-    private com.toedter.calendar.JDateChooser jDateFiltroFechaFiltro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -456,6 +460,8 @@ public class CitasForm extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanelDetalle;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSpinner jSpinnerFechaCita;
+    private javax.swing.JSpinner jSpinnerFechaFiltro;
     private javax.swing.JTable jTableCitas;
     private javax.swing.JTextField jTextFieldFiltroIDMedico;
     private javax.swing.JTextField jTextFieldFiltroIDPaciente;
