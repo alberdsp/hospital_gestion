@@ -221,7 +221,7 @@ public class CitasFormController {
         model.setRowCount(0);
 
         // Define las cabeceras de la tabla
-        String[] columnNames = {"ID", "Fecha", "Paciente", "Medico"};
+        String[] columnNames = {"ID", "Fecha", "ID Paciente", "Paciente","ID Medico", "Medico"};
         model.setColumnIdentifiers(columnNames);
 
         for (Citas cita : citasList) {
@@ -236,8 +236,12 @@ public class CitasFormController {
             Object[] row = {
                 cita.getId(),
                 fechasalida,
+                cita.getPacientes().getId(),
                 cita.getPacientes().getNombre() + " " + cita.getPacientes().getApellido1(),
-                cita.getMedicos().getNombre() + " " + cita.getMedicos().getApellido1(), //        cita.getPacientes().getNombre(),
+                cita.getMedicos().getId(),
+                cita.getMedicos().getNombre() + " " + cita.getMedicos().getApellido1(), 
+                cita.getPacientes(),
+                cita.getMedicos(),
             //      cita.getMedicos().getNombre(),
             };
             model.addRow(row);
@@ -248,7 +252,7 @@ public class CitasFormController {
 
     // Método para obtener los datos del formulario y crear un objeto Citas
     private Citas obtenerDatosDelFormulario() {
-        // Obtener los valores de los campos de texto u otros componentes del formulario
+        // Obtener los valores de los campos de texto
 
         // Define el formato de fecha y hora
         String id = citasForm.getjTextFieldID().getText();
@@ -256,7 +260,7 @@ public class CitasFormController {
         Pacientes paciente = citasForm.getPaciente();
 
         try {
-            // Obtén el valor del Spinner como un objeto
+            // Obtenemos el valor del Spinner como un objeto
             Object valorSpinner = citasForm.getjSpinnerFechaCita().getValue();
 
             // Convierte el valor del Spinner a String
@@ -268,8 +272,8 @@ public class CitasFormController {
             // Parsea la cadena de fecha y hora a un objeto Date
             Date fechaHora = formatoFechaHora.parse(fechaHoraString);
 
-            // Ahora tienes un objeto Date
-            System.out.println("Fecha y hora en formato Date: " + fechaHora);
+           
+          
         } catch (ParseException e) {
             // Maneja la excepción si la cadena no puede ser parseada
             e.printStackTrace();
@@ -284,7 +288,7 @@ public class CitasFormController {
             cita.setId(Long.parseLong(id));
         }
 
-        cita.setId(Long.getLong(id));
+        
         cita.setMedicos(medico);
         cita.setPacientes(paciente);
 
@@ -302,12 +306,15 @@ public class CitasFormController {
         // Obtiene los valores de las columnas de la fila seleccionada
         Object id = model.getValueAt(selectedRow, 0);
         Object fechacita = model.getValueAt(selectedRow, 1);
-        Object nomPaciente = model.getValueAt(selectedRow, 2);
-        Object nomMedico = model.getValueAt(selectedRow, 3);
-
+         Object idpaciente = model.getValueAt(selectedRow, 2);
+        Object nomPaciente = model.getValueAt(selectedRow, 3);   
+        Object idmedico = model.getValueAt(selectedRow, 4);
+        Object nomMedico = model.getValueAt(selectedRow, 5);
         // Establece los valores en los campos de edición
         citasForm.getjTextFieldID().setText(id.toString());
+        citasForm.getjTextFieldIDPaciente().setText(idpaciente.toString());
         citasForm.getjTextFieldNombrePaciente().setText(nomPaciente.toString());
+         citasForm.getjTextFieldIDMedico().setText(idmedico.toString());
         citasForm.getjTextFieldNombreMedico().setText(nomMedico.toString());
 
         // Manejo de la fecha de cita
@@ -391,17 +398,5 @@ public class CitasFormController {
 
     }
 
-    public static String convertirFechaEspa(Date fecha) {
-        String fechaConvertida = "";
-        String britishDate = "";
-        try {
-            // Creamos un objeto SimpleDateFormat para formatear la fecha en el formato británico
-            SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-            britishDate = outputFormat.format(fecha);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return fechaConvertida;
-    }
 
 }

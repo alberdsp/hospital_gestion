@@ -70,7 +70,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="36" max="32767" attributes="0"/>
+                      <EmptySpace pref="16" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -142,22 +142,21 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="jTextFieldID" min="-2" pref="43" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jTextFieldID" min="-2" pref="75" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                           <Component id="jLabelTelefono" min="-2" pref="67" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jSpinnerFechaCita" min="-2" pref="132" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jTextFieldIDMedico" min="-2" pref="43" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jTextFieldNombreMedico" min="-2" pref="318" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jTextFieldIDMedico" pref="75" max="32767" attributes="0"/>
+                              <Component id="jTextFieldIDPaciente" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jTextFieldIDPaciente" min="-2" pref="43" max="-2" attributes="0"/>
-                              <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                              <Component id="jTextFieldNombrePaciente" min="-2" pref="318" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jTextFieldNombrePaciente" alignment="0" min="-2" pref="318" max="-2" attributes="0"/>
+                              <Component id="jTextFieldNombreMedico" alignment="1" min="-2" pref="318" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
