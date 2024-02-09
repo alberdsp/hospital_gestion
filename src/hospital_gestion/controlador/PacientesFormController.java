@@ -297,6 +297,10 @@ public class PacientesFormController {
             pacientesForm.getjTextFieldTelefono().setText(String.valueOf(telefonoValue));
             pacientesForm.getjTextFieldDni().setText(String.valueOf(dniValue));
             pacientesForm.getjTextFieldSip().setText(String.valueOf(sipValue));
+            
+            // establace el id de la linea seleccionada al formulario
+            
+            pacientesForm.setId(String.valueOf(idValue));
         }
 
     }

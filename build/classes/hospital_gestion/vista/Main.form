@@ -187,6 +187,9 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JDesktopPane" name="jDesktopPane">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="&quot; GESTION DE HOSPITAL 2024 &quot;"/>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">

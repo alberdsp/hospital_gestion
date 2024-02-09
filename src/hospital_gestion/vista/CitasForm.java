@@ -87,8 +87,8 @@ public class CitasForm extends javax.swing.JInternalFrame {
         jButtonReset = new javax.swing.JButton();
         jTextFieldFiltroIDMedico = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jButtonBuscaPaciente1 = new javax.swing.JButton();
-        jButtonBuscarMedico1 = new javax.swing.JButton();
+        jButtonBuscaPacienteFiltro = new javax.swing.JButton();
+        jButtonBuscarMedicoFiltro = new javax.swing.JButton();
 
         setClosable(true);
         setMaximizable(true);
@@ -235,9 +235,9 @@ public class CitasForm extends javax.swing.JInternalFrame {
 
         jLabel4.setText("ID Medico");
 
-        jButtonBuscaPaciente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/lupa.png"))); // NOI18N
+        jButtonBuscaPacienteFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/lupa.png"))); // NOI18N
 
-        jButtonBuscarMedico1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/lupa.png"))); // NOI18N
+        jButtonBuscarMedicoFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/lupa.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -260,13 +260,13 @@ public class CitasForm extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jTextFieldFiltroIDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jButtonBuscaPaciente1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonBuscaPacienteFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(172, 172, 172)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(jTextFieldFiltroIDMedico)
                                         .addComponent(jLabel4))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jButtonBuscarMedico1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonBuscarMedicoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButtonReset)))
                             .addGroup(layout.createSequentialGroup()
@@ -293,7 +293,7 @@ public class CitasForm extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel3)
                                 .addGap(9, 9, 9)
                                 .addComponent(jTextFieldFiltroIDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButtonBuscaPaciente1)))
+                            .addComponent(jButtonBuscaPacienteFiltro)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -301,7 +301,7 @@ public class CitasForm extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel4)
                                 .addGap(9, 9, 9)
                                 .addComponent(jTextFieldFiltroIDMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButtonBuscarMedico1))))
+                            .addComponent(jButtonBuscarMedicoFiltro))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -349,16 +349,16 @@ public class CitasForm extends javax.swing.JInternalFrame {
         return jButtonBuscaPaciente;
     }
 
-    public JButton getjButtonBuscaPaciente1() {
-        return jButtonBuscaPaciente1;
+    public JButton getjButtonBuscaPacienteFiltro() {
+        return jButtonBuscaPacienteFiltro;
     }
 
     public JButton getjButtonBuscarMedico() {
         return jButtonBuscarMedico;
     }
 
-    public JButton getjButtonBuscarMedico1() {
-        return jButtonBuscarMedico1;
+    public JButton getjButtonBuscarMedicoFiltro() {
+        return jButtonBuscarMedicoFiltro;
     }
 
     public JButton getjButtonEliminar() {
@@ -426,9 +426,9 @@ public class CitasForm extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscaPaciente;
-    private javax.swing.JButton jButtonBuscaPaciente1;
+    private javax.swing.JButton jButtonBuscaPacienteFiltro;
     private javax.swing.JButton jButtonBuscarMedico;
-    private javax.swing.JButton jButtonBuscarMedico1;
+    private javax.swing.JButton jButtonBuscarMedicoFiltro;
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonFiltro;
     private javax.swing.JButton jButtonGrabar;

@@ -15,6 +15,11 @@ import javax.swing.JTextField;
  * @author Alber
  */
 public class MedicosForm extends javax.swing.JInternalFrame {
+    
+    
+    private String id;
+    
+    
 
     /**
      * Creamos formulario Medicos 
@@ -518,4 +523,13 @@ public class MedicosForm extends javax.swing.JInternalFrame {
         this.jTextFieldTelefono = jTextFieldTelefono;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    
 }

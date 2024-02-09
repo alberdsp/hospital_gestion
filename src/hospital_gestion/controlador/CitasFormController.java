@@ -5,6 +5,10 @@ import hospital_gestion.modelo.FiltroCitas;
 import hospital_gestion.modelo.Medicos;
 import hospital_gestion.modelo.Pacientes;
 import hospital_gestion.vista.CitasForm;
+import hospital_gestion.vista.MedicosForm;
+import hospital_gestion.vista.PacientesForm;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -83,12 +87,10 @@ public class CitasFormController {
                 } else {
                     paciente = buscarPaciente(Long.parseLong(idpaciente));
                 }
-              
 
                 FiltroCitas filtro = new FiltroCitas();
                 filtro.setPaciente(paciente);
                 filtro.setMedico(medico);
-           
 
                 // filtramos pasando el objeto con los filtros
                 filtrarCitas(filtro);
@@ -126,6 +128,58 @@ public class CitasFormController {
                 } else {
                     // Error: 
                 }
+            }
+        });
+
+        // Agregar un ActionListener para buscar filtro paciente
+        citasForm.getjButtonBuscaPacienteFiltro().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // instanciamos formulario de paciente
+
+                PacientesForm pacientesForm = new PacientesForm();
+
+                // centramos el formulario al centro de la ventana
+                Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+                int x = (int) ((dimension.getWidth() - pacientesForm.getWidth()) / 2);
+                int y = (int) ((dimension.getHeight() - pacientesForm.getHeight()) / 2);
+                pacientesForm.setLocation(x, y);
+                // cargamos el controlador
+                PacientesFormController pacientesFormController = new PacientesFormController(pacientesForm);
+                pacientesForm.setVisible(true);
+                citasForm.add(pacientesForm);
+
+                // Hacemos que el hijo se comporte como un diálogo modal
+                JOptionPane.showMessageDialog(citasForm, pacientesForm, "Seleccione el paciente de la lista y puse aceptar", JOptionPane.PLAIN_MESSAGE);
+
+                citasForm.getjTextFieldFiltroIDPaciente().setText(pacientesForm.getId());
+
+            }
+        });
+
+        // Agregar un ActionListener para buscar filtro médico
+        citasForm.getjButtonBuscarMedicoFiltro().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // instanciamos formulario de paciente
+
+                MedicosForm medicosForm = new MedicosForm();
+
+                // centramos el formulario al centro de la ventana
+                Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+                int x = (int) ((dimension.getWidth() - medicosForm.getWidth()) / 2);
+                int y = (int) ((dimension.getHeight() - medicosForm.getHeight()) / 2);
+                medicosForm.setLocation(x, y);
+                // cargamos el controlador
+                MedicosFormController pacientesFormController = new MedicosFormController(medicosForm);
+                medicosForm.setVisible(true);
+                citasForm.add(medicosForm);
+
+                // Hacemos que el hijo se comporte como un diálogo modal
+                JOptionPane.showMessageDialog(citasForm, medicosForm, "Seleccione el paciente de la lista y puse aceptar", JOptionPane.PLAIN_MESSAGE);
+
+                citasForm.getjTextFieldFiltroIDMedico().setText(medicosForm.getId());
+
             }
         });
 
@@ -358,7 +412,7 @@ public class CitasFormController {
 
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
- // Define las cabeceras de la tabla
+        // Define las cabeceras de la tabla
         String[] columnNames = {"ID", "Fecha", "ID Paciente", "Paciente", "ID Medico", "Medico"};
         model.setColumnIdentifiers(columnNames);
 
@@ -393,13 +447,11 @@ public class CitasFormController {
         citasForm.getjTextFieldFiltroIDPaciente().setText("");
         citasForm.getjTextFieldFiltroIDMedico().setText("");
 
-        
-           JTable tabla = new JTable();
-           
-           tabla = citasForm.getjTableCitas();
-           
+        JTable tabla = new JTable();
 
-          cargarCitasEnTabla(tabla);
+        tabla = citasForm.getjTableCitas();
+
+        cargarCitasEnTabla(tabla);
 
     }
 
@@ -440,16 +492,10 @@ public class CitasFormController {
                 .setParameter("id", id).list();
 
         Medicos medico = medicosList.get(0);
-        Medicos medicoDTO = new Medicos();    
-        
-        medicoDTO.setId(medico.getId());
-        medicoDTO.setNombre(medico.getNombre());
-        medicoDTO.setApellido1(medico.getApellido2());
-        medicoDTO.setNumeroColegiado(medico.getNumeroColegiado());
 
         session.close();
 
-        return medicoDTO;
+        return medico;
     }
 
 }

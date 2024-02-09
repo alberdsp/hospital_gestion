@@ -43,14 +43,14 @@
                                       <Component id="jTextFieldFiltroIDPaciente" min="-2" pref="64" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButtonBuscaPaciente1" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="jButtonBuscaPacienteFiltro" min="-2" pref="40" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="jTextFieldFiltroIDMedico" max="32767" attributes="0"/>
                                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jButtonBuscarMedico1" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="jButtonBuscarMedicoFiltro" min="-2" pref="40" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jButtonReset" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -88,7 +88,7 @@
                               <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                               <Component id="jTextFieldFiltroIDPaciente" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jButtonBuscaPaciente1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonBuscaPacienteFiltro" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -99,7 +99,7 @@
                               <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                               <Component id="jTextFieldFiltroIDMedico" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jButtonBuscarMedico1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonBuscarMedicoFiltro" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -350,14 +350,14 @@
         <Property name="text" type="java.lang.String" value="ID Medico"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonBuscaPaciente1">
+    <Component class="javax.swing.JButton" name="jButtonBuscaPacienteFiltro">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/media/lupa.png"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonBuscarMedico1">
+    <Component class="javax.swing.JButton" name="jButtonBuscarMedicoFiltro">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/media/lupa.png"/>

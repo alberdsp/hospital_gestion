@@ -289,6 +289,8 @@ public class MedicosFormController {
             medicosForm.getjTextFieldTelefono().setText(String.valueOf(telefonoValue));
             medicosForm.getjTextFieldDni().setText(String.valueOf(dniValue));
             medicosForm.getjTextFieldNcolegiado().setText(String.valueOf(ncolegiadoValue));
+            medicosForm.setId(String.valueOf(idValue));
+            
         }
 
     }
