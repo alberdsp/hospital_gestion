@@ -343,8 +343,8 @@ public class CitasFormController {
     public void filtrarCitas(FiltroCitas filtro) {
         Session session = sessionFactory.openSession();
 
-        String hql = "FROM Citas m WHERE (m.pacientes = :pacientes "
-                + "OR  m.medicos = :medicos)";
+        String hql = "FROM Citas m WHERE (:pacientes IS NULL OR m.pacientes = :pacientes) "
+                + "AND (:medicos IS NULL OR m.medicos = :medicos)";
 
         // montamos un objeto Citas list con la
         List<Citas> citasList = session.createQuery(hql)

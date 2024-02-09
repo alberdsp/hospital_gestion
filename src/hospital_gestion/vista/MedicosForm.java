@@ -6,6 +6,9 @@
 package hospital_gestion.vista;
 
 import hospital_gestion.controlador.MedicosFormController;
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -352,11 +355,11 @@ public class MedicosForm extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton jButtonEliminar;
-    public javax.swing.JButton jButtonFiltro;
-    public javax.swing.JButton jButtonGrabar;
-    public javax.swing.JButton jButtonNuevo;
-    public javax.swing.JButton jButtonReset;
+    private javax.swing.JButton jButtonEliminar;
+    private javax.swing.JButton jButtonFiltro;
+    private javax.swing.JButton jButtonGrabar;
+    private javax.swing.JButton jButtonNuevo;
+    private javax.swing.JButton jButtonReset;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -370,44 +373,149 @@ public class MedicosForm extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanelDetalle;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    public javax.swing.JTable jTableMedicos;
-    public javax.swing.JTextField jTextFieldApellido1;
-    public javax.swing.JTextField jTextFieldApellido2;
-    public javax.swing.JTextField jTextFieldDni;
-    public javax.swing.JTextField jTextFieldFiltroApe1;
-    public javax.swing.JTextField jTextFieldFiltroNcolegiado;
-    public javax.swing.JTextField jTextFieldFiltroNombre;
-    public javax.swing.JTextField jTextFieldID;
-    public javax.swing.JTextField jTextFieldNcolegiado;
-    public javax.swing.JTextField jTextFieldNombre;
-    public javax.swing.JTextField jTextFieldTelefono;
+    private javax.swing.JTable jTableMedicos;
+    private javax.swing.JTextField jTextFieldApellido1;
+    private javax.swing.JTextField jTextFieldApellido2;
+    private javax.swing.JTextField jTextFieldDni;
+    private javax.swing.JTextField jTextFieldFiltroApe1;
+    private javax.swing.JTextField jTextFieldFiltroNcolegiado;
+    private javax.swing.JTextField jTextFieldFiltroNombre;
+    private javax.swing.JTextField jTextFieldID;
+    private javax.swing.JTextField jTextFieldNcolegiado;
+    private javax.swing.JTextField jTextFieldNombre;
+    private javax.swing.JTextField jTextFieldTelefono;
     // End of variables declaration//GEN-END:variables
 
     public void setController(MedicosFormController aThis) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Object getjTextFieldNombre() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public JButton getjButtonEliminar() {
+        return jButtonEliminar;
     }
 
-    public Object getjTextFieldApellido1() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setjButtonEliminar(JButton jButtonEliminar) {
+        this.jButtonEliminar = jButtonEliminar;
     }
 
-    public Object getjTextFieldApellido2() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public JButton getjButtonFiltro() {
+        return jButtonFiltro;
     }
 
-    public Object getjTextFieldTelefono() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setjButtonFiltro(JButton jButtonFiltro) {
+        this.jButtonFiltro = jButtonFiltro;
     }
 
-    public Object getjTextFieldDni() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public JButton getjButtonGrabar() {
+        return jButtonGrabar;
     }
 
-    public Object getjTextFieldNcolegiado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setjButtonGrabar(JButton jButtonGrabar) {
+        this.jButtonGrabar = jButtonGrabar;
     }
+
+    public JButton getjButtonNuevo() {
+        return jButtonNuevo;
+    }
+
+    public void setjButtonNuevo(JButton jButtonNuevo) {
+        this.jButtonNuevo = jButtonNuevo;
+    }
+
+    public JButton getjButtonReset() {
+        return jButtonReset;
+    }
+
+    public void setjButtonReset(JButton jButtonReset) {
+        this.jButtonReset = jButtonReset;
+    }
+
+    public JTable getjTableMedicos() {
+        return jTableMedicos;
+    }
+
+    public void setjTableMedicos(JTable jTableMedicos) {
+        this.jTableMedicos = jTableMedicos;
+    }
+
+    public JTextField getjTextFieldApellido1() {
+        return jTextFieldApellido1;
+    }
+
+    public void setjTextFieldApellido1(JTextField jTextFieldApellido1) {
+        this.jTextFieldApellido1 = jTextFieldApellido1;
+    }
+
+    public JTextField getjTextFieldApellido2() {
+        return jTextFieldApellido2;
+    }
+
+    public void setjTextFieldApellido2(JTextField jTextFieldApellido2) {
+        this.jTextFieldApellido2 = jTextFieldApellido2;
+    }
+
+    public JTextField getjTextFieldDni() {
+        return jTextFieldDni;
+    }
+
+    public void setjTextFieldDni(JTextField jTextFieldDni) {
+        this.jTextFieldDni = jTextFieldDni;
+    }
+
+    public JTextField getjTextFieldFiltroApe1() {
+        return jTextFieldFiltroApe1;
+    }
+
+    public void setjTextFieldFiltroApe1(JTextField jTextFieldFiltroApe1) {
+        this.jTextFieldFiltroApe1 = jTextFieldFiltroApe1;
+    }
+
+    public JTextField getjTextFieldFiltroNcolegiado() {
+        return jTextFieldFiltroNcolegiado;
+    }
+
+    public void setjTextFieldFiltroNcolegiado(JTextField jTextFieldFiltroNcolegiado) {
+        this.jTextFieldFiltroNcolegiado = jTextFieldFiltroNcolegiado;
+    }
+
+    public JTextField getjTextFieldFiltroNombre() {
+        return jTextFieldFiltroNombre;
+    }
+
+    public void setjTextFieldFiltroNombre(JTextField jTextFieldFiltroNombre) {
+        this.jTextFieldFiltroNombre = jTextFieldFiltroNombre;
+    }
+
+    public JTextField getjTextFieldID() {
+        return jTextFieldID;
+    }
+
+    public void setjTextFieldID(JTextField jTextFieldID) {
+        this.jTextFieldID = jTextFieldID;
+    }
+
+    public JTextField getjTextFieldNcolegiado() {
+        return jTextFieldNcolegiado;
+    }
+
+    public void setjTextFieldNcolegiado(JTextField jTextFieldNcolegiado) {
+        this.jTextFieldNcolegiado = jTextFieldNcolegiado;
+    }
+
+    public JTextField getjTextFieldNombre() {
+        return jTextFieldNombre;
+    }
+
+    public void setjTextFieldNombre(JTextField jTextFieldNombre) {
+        this.jTextFieldNombre = jTextFieldNombre;
+    }
+
+    public JTextField getjTextFieldTelefono() {
+        return jTextFieldTelefono;
+    }
+
+    public void setjTextFieldTelefono(JTextField jTextFieldTelefono) {
+        this.jTextFieldTelefono = jTextFieldTelefono;
+    }
+
 }

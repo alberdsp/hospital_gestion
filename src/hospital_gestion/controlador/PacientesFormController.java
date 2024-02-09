@@ -33,7 +33,7 @@ public class PacientesFormController {
                 .addAnnotatedClass(Pacientes.class)
                 .buildSessionFactory();
 
-        cargarPacientesEnTabla(pacientesForm.jTablePacientes);
+        cargarPacientesEnTabla(pacientesForm.getjTablePacientes());
 
         configurarListeners();
     }
@@ -42,7 +42,7 @@ public class PacientesFormController {
     private void configurarListeners() {
 
         // Agregar un ActionListener para el botón "Grabar"
-        pacientesForm.jButtonGrabar.addActionListener(new ActionListener() {
+        pacientesForm.getjButtonGrabar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Obtenemos los datos y grabamos
@@ -59,15 +59,15 @@ public class PacientesFormController {
         });
 
         // Agregar un ActionListener para el botón "Filtrar"
-        pacientesForm.jButtonFiltro.addActionListener(new ActionListener() {
+        pacientesForm.getjButtonFiltro().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
                 // TODO   armar bien el filtro para pasar objeto con sus parámtros
                 // armamos los filtros
-                String nombre = pacientesForm.jTextFieldFiltroNombre.getText();
-                String apellido1 = pacientesForm.jTextFieldFiltroApe1.getText();
-                String dni = pacientesForm.jTextFieldFiltroDni.getText();
+                String nombre = pacientesForm.getjTextFieldFiltroNombre().getText();
+                String apellido1 = pacientesForm.getjTextFieldFiltroApe1().getText();
+                String dni = pacientesForm.getjTextFieldFiltroDni().getText();
 
                 // Reemplazamos las cadenas vacías con null
                 nombre = (nombre.isEmpty()) ? null : nombre;
@@ -87,7 +87,7 @@ public class PacientesFormController {
         
         
           // Agregar un ActionListener para el botón "Reset"
-        pacientesForm.jButtonReset.addActionListener(new ActionListener() {
+        pacientesForm.getjButtonReset().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setearFiltro();
@@ -97,7 +97,7 @@ public class PacientesFormController {
         });
 
         // Agregar un ActionListener para el botón "Nuevo"
-        pacientesForm.jButtonNuevo.addActionListener(new ActionListener() {
+        pacientesForm.getjButtonNuevo().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setearForm();
@@ -105,7 +105,7 @@ public class PacientesFormController {
         });
 
         // Agregar un ActionListener para el botón "Borrar"
-        pacientesForm.jButtonEliminar.addActionListener(new ActionListener() {
+        pacientesForm.getjButtonEliminar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Obtenemos los datos y borramos
@@ -122,7 +122,7 @@ public class PacientesFormController {
         });
 
         // Agregar ActionListener a la tabla para detectar la selección de fila
-        pacientesForm.jTablePacientes.getSelectionModel().addListSelectionListener(e -> {
+        pacientesForm.getjTablePacientes().getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 // Llamar al método para cargar datos cuando se selecciona una fila
                 cargarFilaSelect();
@@ -155,7 +155,7 @@ public class PacientesFormController {
 
             transaction.commit();
 
-            cargarPacientesEnTabla(pacientesForm.jTablePacientes);
+            cargarPacientesEnTabla(pacientesForm.getjTablePacientes());
 
             JOptionPane.showMessageDialog(null, "Paciente grabado corréctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
             return true;
@@ -193,7 +193,7 @@ public class PacientesFormController {
 
             transaction.commit();
 
-            cargarPacientesEnTabla(pacientesForm.jTablePacientes);
+            cargarPacientesEnTabla(pacientesForm.getjTablePacientes());
 
             JOptionPane.showMessageDialog(null, "Paciente borrado corréctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
 
@@ -244,13 +244,13 @@ public class PacientesFormController {
     private Pacientes obtenerDatosDelFormulario() {
         // Obtener los valores de los campos de texto u otros componentes del formulario
 
-        String id = pacientesForm.jTextFieldID.getText();
-        String nombre = pacientesForm.jTextFieldNombre.getText();
-        String apellido1 = pacientesForm.jTextFieldApellido1.getText();
-        String apellido2 = pacientesForm.jTextFieldApellido2.getText();
-        String telefono = pacientesForm.jTextFieldTelefono.getText();
-        String dni = pacientesForm.jTextFieldDni.getText();
-        String sip = pacientesForm.jTextFieldSip.getText();
+        String id = pacientesForm.getjTextFieldID().getText();
+        String nombre = pacientesForm.getjTextFieldNombre().getText();
+        String apellido1 = pacientesForm.getjTextFieldApellido1().getText();
+        String apellido2 = pacientesForm.getjTextFieldApellido2().getText();
+        String telefono = pacientesForm.getjTextFieldTelefono().getText();
+        String dni = pacientesForm.getjTextFieldDni().getText();
+        String sip = pacientesForm.getjTextFieldSip().getText();
 
         // Crear un objeto Pacientes con los datos obtenidos
         Pacientes paciente = new Pacientes();
@@ -274,11 +274,11 @@ public class PacientesFormController {
     // Método para cargar los datos de la fila seleccionada en los campos de edición
     public void cargarFilaSelect() {
 
-        int selectedRow = pacientesForm.jTablePacientes.getSelectedRow();
+        int selectedRow = pacientesForm.getjTablePacientes().getSelectedRow();
 
         // Verifica si se ha seleccionado una fila
         if (selectedRow != -1) {
-            DefaultTableModel model = (DefaultTableModel) pacientesForm.jTablePacientes.getModel();
+            DefaultTableModel model = (DefaultTableModel) pacientesForm.getjTablePacientes().getModel();
 
             // Obtiene los valores de las columnas de la fila seleccionada
             Object idValue = model.getValueAt(selectedRow, 0);
@@ -290,13 +290,13 @@ public class PacientesFormController {
             Object sipValue = model.getValueAt(selectedRow, 6);
 
             // Establece los valores en los campos de edición
-            pacientesForm.jTextFieldID.setText(String.valueOf(idValue));
-            pacientesForm.jTextFieldNombre.setText(String.valueOf(nombreValue));
-            pacientesForm.jTextFieldApellido1.setText(String.valueOf(apellido1Value));
-            pacientesForm.jTextFieldApellido2.setText(String.valueOf(apellido2Value));
-            pacientesForm.jTextFieldTelefono.setText(String.valueOf(telefonoValue));
-            pacientesForm.jTextFieldDni.setText(String.valueOf(dniValue));
-            pacientesForm.jTextFieldSip.setText(String.valueOf(sipValue));
+            pacientesForm.getjTextFieldID().setText(String.valueOf(idValue));
+            pacientesForm.getjTextFieldNombre().setText(String.valueOf(nombreValue));
+            pacientesForm.getjTextFieldApellido1().setText(String.valueOf(apellido1Value));
+            pacientesForm.getjTextFieldApellido2().setText(String.valueOf(apellido2Value));
+            pacientesForm.getjTextFieldTelefono().setText(String.valueOf(telefonoValue));
+            pacientesForm.getjTextFieldDni().setText(String.valueOf(dniValue));
+            pacientesForm.getjTextFieldSip().setText(String.valueOf(sipValue));
         }
 
     }
@@ -305,13 +305,13 @@ public class PacientesFormController {
     public void setearForm() {
 
         // seteamos a ""   
-        pacientesForm.jTextFieldID.setText(String.valueOf(""));
-        pacientesForm.jTextFieldNombre.setText(String.valueOf(""));
-        pacientesForm.jTextFieldApellido1.setText(String.valueOf(""));
-        pacientesForm.jTextFieldApellido2.setText(String.valueOf(""));
-        pacientesForm.jTextFieldTelefono.setText(String.valueOf(""));
-        pacientesForm.jTextFieldDni.setText(String.valueOf(""));
-        pacientesForm.jTextFieldSip.setText(String.valueOf(""));
+        pacientesForm.getjTextFieldID().setText(String.valueOf(""));
+        pacientesForm.getjTextFieldNombre().setText(String.valueOf(""));
+        pacientesForm.getjTextFieldApellido1().setText(String.valueOf(""));
+        pacientesForm.getjTextFieldApellido2().setText(String.valueOf(""));
+        pacientesForm.getjTextFieldTelefono().setText(String.valueOf(""));
+        pacientesForm.getjTextFieldDni().setText(String.valueOf(""));
+        pacientesForm.getjTextFieldSip().setText(String.valueOf(""));
 
     }
 
@@ -323,8 +323,8 @@ public class PacientesFormController {
         Session session = sessionFactory.openSession();
 
         String hql = "FROM Pacientes m WHERE (:nombre IS NULL OR m.nombre = :nombre) "
-                + "AND (:apellido1 IS NULL OR m.apellido1 = :apellido1 "
-                + "OR m.dni = :dni)";
+                + "AND (:apellido1 IS NULL OR m.apellido1 = :apellido1 )"
+                + "AND (:dni IS NULL OR m.dni = :dni)";
 
         // montamos un objeto Pacientes list con la
         List<Pacientes> pacientesList = session.createQuery(hql)
@@ -335,7 +335,7 @@ public class PacientesFormController {
         // ejecutamos la consulta y la pasamos a lista
      
         JTable table = new JTable();
-        table = pacientesForm.jTablePacientes;
+        table = pacientesForm.getjTablePacientes();
 
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
@@ -367,24 +367,20 @@ public class PacientesFormController {
     // establecemos los filtros en blanco
        private void setearFiltro() {
                 
-           pacientesForm.jTextFieldFiltroNombre.setText("");
-           pacientesForm.jTextFieldFiltroApe1.setText("");
-           pacientesForm.jTextFieldFiltroDni.setText("");
+           pacientesForm.getjTextFieldFiltroNombre().setText("");
+           pacientesForm.getjTextFieldFiltroApe1().setText("");
+           pacientesForm.getjTextFieldFiltroDni().setText("");
            
            JTable tabla = new JTable();
            
-           tabla = pacientesForm.jTablePacientes;
+           tabla = pacientesForm.getjTablePacientes();
            
            cargarPacientesEnTabla(tabla);
            
                       
             }
        
-   
-       
-       
-       
-       
+        
        
 
 }

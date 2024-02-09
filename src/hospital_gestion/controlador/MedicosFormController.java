@@ -27,7 +27,7 @@ public class MedicosFormController {
                 .addAnnotatedClass(Medicos.class)
                 .buildSessionFactory();
 
-        cargarMedicosEnTabla(medicosForm.jTableMedicos);
+        cargarMedicosEnTabla(medicosForm.getjTableMedicos());
 
         configurarListeners();
     }
@@ -36,7 +36,7 @@ public class MedicosFormController {
     private void configurarListeners() {
 
         // Agregar un ActionListener para el botón "Grabar"
-        medicosForm.jButtonGrabar.addActionListener(new ActionListener() {
+        medicosForm.getjButtonGrabar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Obtenemos los datos y grabamos
@@ -53,15 +53,15 @@ public class MedicosFormController {
         });
 
         // Agregar un ActionListener para el botón "Filtrar"
-        medicosForm.jButtonFiltro.addActionListener(new ActionListener() {
+        medicosForm.getjButtonFiltro().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
                 // TODO   armar bien el filtro para pasar objeto con sus parámtros
                 // armamos los filtros
-                String nombre = medicosForm.jTextFieldFiltroNombre.getText();
-                String apellido1 = medicosForm.jTextFieldFiltroApe1.getText();
-                String numeroColegiado = medicosForm.jTextFieldFiltroNcolegiado.getText();
+                String nombre = medicosForm.getjTextFieldFiltroNombre().getText();
+                String apellido1 = medicosForm.getjTextFieldFiltroApe1().getText();
+                String numeroColegiado = medicosForm.getjTextFieldFiltroNcolegiado().getText();
 
                 // Reemplazamos las cadenas vacías con null
                 nombre = (nombre.isEmpty()) ? null : nombre;
@@ -81,7 +81,7 @@ public class MedicosFormController {
         
         
           // Agregar un ActionListener para el botón "Reset"
-        medicosForm.jButtonReset.addActionListener(new ActionListener() {
+        medicosForm.getjButtonReset().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setearFiltro();
@@ -91,7 +91,7 @@ public class MedicosFormController {
         });
 
         // Agregar un ActionListener para el botón "Nuevo"
-        medicosForm.jButtonNuevo.addActionListener(new ActionListener() {
+        medicosForm.getjButtonNuevo().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setearForm();
@@ -99,7 +99,7 @@ public class MedicosFormController {
         });
 
         // Agregar un ActionListener para el botón "Borrar"
-        medicosForm.jButtonEliminar.addActionListener(new ActionListener() {
+        medicosForm.getjButtonEliminar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Obtenemos los datos y borramos
@@ -116,7 +116,7 @@ public class MedicosFormController {
         });
 
         // Agregar ActionListener a la tabla para detectar la selección de fila
-        medicosForm.jTableMedicos.getSelectionModel().addListSelectionListener(e -> {
+        medicosForm.getjTableMedicos().getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 // Llamar al método para cargar datos cuando se selecciona una fila
                 cargarFilaSelect();
@@ -149,7 +149,7 @@ public class MedicosFormController {
 
             transaction.commit();
 
-            cargarMedicosEnTabla(medicosForm.jTableMedicos);
+            cargarMedicosEnTabla(medicosForm.getjTableMedicos());
 
             JOptionPane.showMessageDialog(null, "Médico grabado corréctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
             return true;
@@ -187,7 +187,7 @@ public class MedicosFormController {
 
             transaction.commit();
 
-            cargarMedicosEnTabla(medicosForm.jTableMedicos);
+            cargarMedicosEnTabla(medicosForm.getjTableMedicos());
 
             JOptionPane.showMessageDialog(null, "Médico borrado corréctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
 
@@ -237,13 +237,13 @@ public class MedicosFormController {
     private Medicos obtenerDatosDelFormulario() {
         // Obtener los valores de los campos de texto u otros componentes del formulario
 
-        String id = medicosForm.jTextFieldID.getText();
-        String nombre = medicosForm.jTextFieldNombre.getText();
-        String apellido1 = medicosForm.jTextFieldApellido1.getText();
-        String apellido2 = medicosForm.jTextFieldApellido2.getText();
-        String telefono = medicosForm.jTextFieldTelefono.getText();
-        String dni = medicosForm.jTextFieldDni.getText();
-        String numeroColegiado = medicosForm.jTextFieldNcolegiado.getText();
+        String id = medicosForm.getjTextFieldID().getText();
+        String nombre = medicosForm.getjTextFieldNombre().getText();
+        String apellido1 = medicosForm.getjTextFieldApellido1().getText();
+        String apellido2 = medicosForm.getjTextFieldApellido2().getText();
+        String telefono = medicosForm.getjTextFieldTelefono().getText();
+        String dni = medicosForm.getjTextFieldDni().getText();
+        String numeroColegiado = medicosForm.getjTextFieldNcolegiado().getText();
 
         // Crear un objeto Medicos con los datos obtenidos
         Medicos medico = new Medicos();
@@ -266,11 +266,11 @@ public class MedicosFormController {
     // Método para cargar los datos de la fila seleccionada en los campos de edición
     public void cargarFilaSelect() {
 
-        int selectedRow = medicosForm.jTableMedicos.getSelectedRow();
+        int selectedRow = medicosForm.getjTableMedicos().getSelectedRow();
 
         // Verifica si se ha seleccionado una fila
         if (selectedRow != -1) {
-            DefaultTableModel model = (DefaultTableModel) medicosForm.jTableMedicos.getModel();
+            DefaultTableModel model = (DefaultTableModel) medicosForm.getjTableMedicos().getModel();
 
             // Obtiene los valores de las columnas de la fila seleccionada
             Object idValue = model.getValueAt(selectedRow, 0);
@@ -282,13 +282,13 @@ public class MedicosFormController {
             Object ncolegiadoValue = model.getValueAt(selectedRow, 6);
 
             // Establece los valores en los campos de edición
-            medicosForm.jTextFieldID.setText(String.valueOf(idValue));
-            medicosForm.jTextFieldNombre.setText(String.valueOf(nombreValue));
-            medicosForm.jTextFieldApellido1.setText(String.valueOf(apellido1Value));
-            medicosForm.jTextFieldApellido2.setText(String.valueOf(apellido2Value));
-            medicosForm.jTextFieldTelefono.setText(String.valueOf(telefonoValue));
-            medicosForm.jTextFieldDni.setText(String.valueOf(dniValue));
-            medicosForm.jTextFieldNcolegiado.setText(String.valueOf(ncolegiadoValue));
+            medicosForm.getjTextFieldID().setText(String.valueOf(idValue));
+            medicosForm.getjTextFieldNombre().setText(String.valueOf(nombreValue));
+            medicosForm.getjTextFieldApellido1().setText(String.valueOf(apellido1Value));
+            medicosForm.getjTextFieldApellido2().setText(String.valueOf(apellido2Value));
+            medicosForm.getjTextFieldTelefono().setText(String.valueOf(telefonoValue));
+            medicosForm.getjTextFieldDni().setText(String.valueOf(dniValue));
+            medicosForm.getjTextFieldNcolegiado().setText(String.valueOf(ncolegiadoValue));
         }
 
     }
@@ -297,13 +297,13 @@ public class MedicosFormController {
     public void setearForm() {
 
         // seteamos a ""   
-        medicosForm.jTextFieldID.setText(String.valueOf(""));
-        medicosForm.jTextFieldNombre.setText(String.valueOf(""));
-        medicosForm.jTextFieldApellido1.setText(String.valueOf(""));
-        medicosForm.jTextFieldApellido2.setText(String.valueOf(""));
-        medicosForm.jTextFieldTelefono.setText(String.valueOf(""));
-        medicosForm.jTextFieldDni.setText(String.valueOf(""));
-        medicosForm.jTextFieldNcolegiado.setText(String.valueOf(""));
+        medicosForm.getjTextFieldID().setText(String.valueOf(""));
+        medicosForm.getjTextFieldNombre().setText(String.valueOf(""));
+        medicosForm.getjTextFieldApellido1().setText(String.valueOf(""));
+        medicosForm.getjTextFieldApellido2().setText(String.valueOf(""));
+        medicosForm.getjTextFieldTelefono().setText(String.valueOf(""));
+        medicosForm.getjTextFieldDni().setText(String.valueOf(""));
+        medicosForm.getjTextFieldNcolegiado().setText(String.valueOf(""));
 
     }
 
@@ -315,8 +315,8 @@ public class MedicosFormController {
         Session session = sessionFactory.openSession();
 
         String hql = "FROM Medicos m WHERE (:nombre IS NULL OR m.nombre = :nombre) "
-                + "AND (:apellido1 IS NULL OR m.apellido1 = :apellido1 "
-                + "OR m.numeroColegiado = :numeroColegiado)";
+                + "AND (:apellido1 IS NULL OR m.apellido1 = :apellido1) "
+                + "AND (:numeroColegiado IS NULL OR m.numeroColegiado = :numeroColegiado)";
 
         // montamos un objeto Medicos list con la
         List<Medicos> medicosList = session.createQuery(hql)
@@ -327,7 +327,7 @@ public class MedicosFormController {
         // ejecutamos la consulta y la pasamos a lista
         //   List<Medicos> medicosList = query.getResultList();
         JTable table = new JTable();
-        table = medicosForm.jTableMedicos;
+        table = medicosForm.getjTableMedicos();
 
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
@@ -356,13 +356,13 @@ public class MedicosFormController {
     
        private void setearFiltro() {
                 
-           medicosForm.jTextFieldFiltroNombre.setText("");
-           medicosForm.jTextFieldFiltroApe1.setText("");
-           medicosForm.jTextFieldFiltroNcolegiado.setText("");
+           medicosForm.getjTextFieldFiltroNombre().setText("");
+           medicosForm.getjTextFieldFiltroApe1().setText("");
+           medicosForm.getjTextFieldFiltroNcolegiado().setText("");
            
            JTable tabla = new JTable();
            
-           tabla = medicosForm.jTableMedicos;
+           tabla = medicosForm.getjTableMedicos();
            
            cargarMedicosEnTabla(tabla);
            
