@@ -28,12 +28,8 @@
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jSeparator1" min="-2" pref="823" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="jScrollPane1" alignment="0" pref="823" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jButtonFiltro" min="-2" max="-2" attributes="0"/>
@@ -55,17 +51,18 @@
                                   <Component id="jButtonReset" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jPanelDetalle" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButtonEliminar" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButtonGrabar" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <Component id="jButtonNuevo" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="jPanelDetalle" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="24" max="32767" attributes="0"/>
+                      <EmptySpace pref="25" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jButtonEliminar" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonGrabar" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="jButtonNuevo" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="jSeparator1" min="-2" pref="823" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="25" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -136,7 +133,7 @@
                       <Component id="jLabelApellido1" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
                       <Component id="jLabelID" alignment="0" min="-2" pref="29" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="23" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="jTextFieldID" min="-2" pref="75" max="-2" attributes="0"/>
@@ -162,7 +159,7 @@
                       <Component id="jButtonBuscarMedico" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="jButtonBuscaPaciente" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="232" pref="255" max="32767" attributes="0"/>
+                  <EmptySpace min="232" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

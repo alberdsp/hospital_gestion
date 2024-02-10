@@ -10,18 +10,15 @@ package hospital_gestion.modelo;
  * @author Alber
  */
 public class FiltroMedicos {
-    
+
     private String nombre;
-    
+
     private String apellido1;
-    
+
     private String numeroColegiado;
-    
-   
-    
+
     // constructor defrecto
-    
-    public FiltroMedicos(){
+    public FiltroMedicos() {
     }
 
     public String getNombre() {
@@ -47,9 +44,5 @@ public class FiltroMedicos {
     public void setNumeroColegiado(String numeroColegiado) {
         this.numeroColegiado = numeroColegiado;
     }
-    
-    
-    
-    
-    
+
 }

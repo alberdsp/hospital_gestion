@@ -6,22 +6,18 @@
 package hospital_gestion.modelo;
 
 /**
- *  Clase para definir los filtros de citas
+ * Clase para definir los filtros de citas
+ *
  * @author Alber
  */
 public class FiltroCitas {
-    
-    private Pacientes paciente;
-    
-    private Medicos medico;
-    
 
-    
-   
-    
+    private Pacientes paciente;
+
+    private Medicos medico;
+
     // constructor defrecto
-    
-    public FiltroCitas(){
+    public FiltroCitas() {
     }
 
     public Pacientes getPaciente() {
@@ -39,5 +35,5 @@ public class FiltroCitas {
     public void setMedico(Medicos medico) {
         this.medico = medico;
     }
-    
+
 }

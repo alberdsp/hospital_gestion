@@ -6,6 +6,7 @@
 package hospital_gestion.vista;
 
 import hospital_gestion.controlador.MedicosFormController;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -22,8 +23,13 @@ public class PacientesForm extends javax.swing.JInternalFrame {
     /**
      * Creamos formulario Pacientes
      */
-    public PacientesForm() {
+    public PacientesForm()  {
         initComponents();
+     
+      // Establecer el icono para el marco interno
+            ImageIcon icono = new ImageIcon(""); 
+            this.setFrameIcon(icono); // 
+     
     }
     
     
@@ -68,9 +74,13 @@ public class PacientesForm extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jButtonReset = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(null);
         setClosable(true);
+        setForeground(new java.awt.Color(255, 255, 255));
         setMaximizable(true);
         setTitle("Mantenimiento de Pacientes");
+        setOpaque(true);
 
         jLabelID.setText("ID");
 
@@ -276,7 +286,7 @@ public class PacientesForm extends javax.swing.JInternalFrame {
                                 .addGap(126, 126, 126)
                                 .addComponent(jLabel3))))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,7 +316,7 @@ public class PacientesForm extends javax.swing.JInternalFrame {
                         .addComponent(jButtonGrabar)
                         .addGap(132, 132, 132)
                         .addComponent(jButtonEliminar)))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         pack();

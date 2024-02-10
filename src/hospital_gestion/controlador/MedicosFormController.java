@@ -77,17 +77,14 @@ public class MedicosFormController {
                 filtrarMedicos(filtro);
             }
         });
-        
-        
-        
-          // Agregar un ActionListener para el botón "Reset"
+
+        // Agregar un ActionListener para el botón "Reset"
         medicosForm.getjButtonReset().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setearFiltro();
             }
 
-         
         });
 
         // Agregar un ActionListener para el botón "Nuevo"
@@ -290,7 +287,7 @@ public class MedicosFormController {
             medicosForm.getjTextFieldDni().setText(String.valueOf(dniValue));
             medicosForm.getjTextFieldNcolegiado().setText(String.valueOf(ncolegiadoValue));
             medicosForm.setId(String.valueOf(idValue));
-            
+
         }
 
     }
@@ -354,21 +351,19 @@ public class MedicosFormController {
         session.close();
 
     }
-    
-    
-       private void setearFiltro() {
-                
-           medicosForm.getjTextFieldFiltroNombre().setText("");
-           medicosForm.getjTextFieldFiltroApe1().setText("");
-           medicosForm.getjTextFieldFiltroNcolegiado().setText("");
-           
-           JTable tabla = new JTable();
-           
-           tabla = medicosForm.getjTableMedicos();
-           
-           cargarMedicosEnTabla(tabla);
-           
-                      
-            }
+
+    private void setearFiltro() {
+
+        medicosForm.getjTextFieldFiltroNombre().setText("");
+        medicosForm.getjTextFieldFiltroApe1().setText("");
+        medicosForm.getjTextFieldFiltroNcolegiado().setText("");
+
+        JTable tabla = new JTable();
+
+        tabla = medicosForm.getjTableMedicos();
+
+        cargarMedicosEnTabla(tabla);
+
+    }
 
 }

@@ -10,18 +10,15 @@ package hospital_gestion.modelo;
  * @author Alber 2024
  */
 public class FiltroPacientes {
-    
+
     private String nombre;
-    
+
     private String apellido1;
-    
+
     private String dni;
-    
-   
-    
+
     // constructor defecto
-    
-    public FiltroPacientes(){
+    public FiltroPacientes() {
     }
 
     public String getNombre() {
@@ -47,9 +44,5 @@ public class FiltroPacientes {
     public void setDni(String dni) {
         this.dni = dni;
     }
-    
-    
-    
-    
-    
+
 }

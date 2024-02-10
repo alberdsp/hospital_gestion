@@ -14,12 +14,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-
 /**
- *  Clase que controla el formulario de Pacientes
+ * Clase que controla el formulario de Pacientes
+ *
  * @author Alber 2024
  */
-
 public class PacientesFormController {
 
     private SessionFactory sessionFactory;
@@ -83,17 +82,14 @@ public class PacientesFormController {
                 filtrarPacientes(filtro);
             }
         });
-        
-        
-        
-          // Agregar un ActionListener para el botón "Reset"
+
+        // Agregar un ActionListener para el botón "Reset"
         pacientesForm.getjButtonReset().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setearFiltro();
             }
 
-         
         });
 
         // Agregar un ActionListener para el botón "Nuevo"
@@ -231,9 +227,7 @@ public class PacientesFormController {
                 paciente.getApellido2(),
                 paciente.getTelefono(),
                 paciente.getDni(),
-                paciente.getSip(),
-               
-            };
+                paciente.getSip(),};
             model.addRow(row);
         }
 
@@ -266,7 +260,6 @@ public class PacientesFormController {
         paciente.setTelefono(telefono);
         paciente.setDni(dni);
         paciente.setSip(sip);
-    
 
         return paciente;
     }
@@ -297,9 +290,8 @@ public class PacientesFormController {
             pacientesForm.getjTextFieldTelefono().setText(String.valueOf(telefonoValue));
             pacientesForm.getjTextFieldDni().setText(String.valueOf(dniValue));
             pacientesForm.getjTextFieldSip().setText(String.valueOf(sipValue));
-            
+
             // establace el id de la linea seleccionada al formulario
-            
             pacientesForm.setId(String.valueOf(idValue));
         }
 
@@ -337,7 +329,6 @@ public class PacientesFormController {
                 .setParameter("dni", filtro.getDni()).list();
 
         // ejecutamos la consulta y la pasamos a lista
-     
         JTable table = new JTable();
         table = pacientesForm.getjTablePacientes();
 
@@ -356,35 +347,27 @@ public class PacientesFormController {
                 paciente.getApellido2(),
                 paciente.getTelefono(),
                 paciente.getDni(),
-                paciente.getSip(),
-             
-            };
+                paciente.getSip(),};
             model.addRow(row);
         }
 
         session.close();
 
     }
-    
-    
-    
+
     // establecemos los filtros en blanco
-       private void setearFiltro() {
-                
-           pacientesForm.getjTextFieldFiltroNombre().setText("");
-           pacientesForm.getjTextFieldFiltroApe1().setText("");
-           pacientesForm.getjTextFieldFiltroDni().setText("");
-           
-           JTable tabla = new JTable();
-           
-           tabla = pacientesForm.getjTablePacientes();
-           
-           cargarPacientesEnTabla(tabla);
-           
-                      
-            }
-       
-        
-       
+    private void setearFiltro() {
+
+        pacientesForm.getjTextFieldFiltroNombre().setText("");
+        pacientesForm.getjTextFieldFiltroApe1().setText("");
+        pacientesForm.getjTextFieldFiltroDni().setText("");
+
+        JTable tabla = new JTable();
+
+        tabla = pacientesForm.getjTablePacientes();
+
+        cargarPacientesEnTabla(tabla);
+
+    }
 
 }

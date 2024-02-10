@@ -6,6 +6,7 @@
 package hospital_gestion.vista;
 
 import hospital_gestion.controlador.MedicosFormController;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -26,6 +27,9 @@ public class MedicosForm extends javax.swing.JInternalFrame {
      */
     public MedicosForm() {
         initComponents();
+         // Establecer el icono para el marco interno
+            ImageIcon icono = new ImageIcon(""); 
+            this.setFrameIcon(icono); // 
     }
 
     /**
