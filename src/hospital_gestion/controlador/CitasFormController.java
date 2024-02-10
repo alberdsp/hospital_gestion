@@ -77,24 +77,39 @@ public class CitasFormController {
                 Medicos medico = new Medicos();
                 Pacientes paciente = new Pacientes();
                 // si los valores vacios ponemos a null
-                if (idmedico.equals("")) {
+                
+                if (idmedico.isEmpty()) {
                     medico = null;
                 } else {
                     medico = buscarMedico(Long.parseLong(idmedico));
                 }
-                if (idpaciente.equals("")) {
+                if (idpaciente.isEmpty()) {
 
                     paciente = null;
                 } else {
                     paciente = buscarPaciente(Long.parseLong(idpaciente));
                 }
-
+                
+                if ( medico == null && paciente == null){
+                
+               JOptionPane.showMessageDialog(citasForm, "Seleccione al menos un criterio para filtrar, paciente o médico","información", JOptionPane.PLAIN_MESSAGE);
+  
+                
+                
+                }else{
+                
                 FiltroCitas filtro = new FiltroCitas();
                 filtro.setPaciente(paciente);
                 filtro.setMedico(medico);
 
                 // filtramos pasando el objeto con los filtros
                 filtrarCitas(filtro);
+                
+                
+                }
+                
+
+         
             }
         });
 
@@ -185,8 +200,11 @@ public class CitasFormController {
 
                 // Hacemos que el hijo se comporte como un diálogo modal
                 JOptionPane.showMessageDialog(citasForm, pacientesForm, "Seleccione el paciente de la lista y puse aceptar", JOptionPane.PLAIN_MESSAGE);
-
-                citasForm.getjTextFieldIDPaciente().setText(pacientesForm.getId());
+                String idbuscado = pacientesForm.getId();
+                citasForm.getjTextFieldIDPaciente().setText(idbuscado);
+                String pacienteBuscado = buscarPaciente(Long.parseLong(idbuscado)).getNombre()+
+                 " " + buscarPaciente(Long.parseLong(idbuscado)).getApellido1();
+                citasForm.getjTextFieldNombrePaciente().setText(pacienteBuscado);
 
             }
         });
@@ -246,6 +264,15 @@ public class CitasFormController {
                 // Hacemos que el hijo se comporte como un diálogo modal
                 JOptionPane.showMessageDialog(citasForm, medicosForm, "Seleccione el paciente de la lista y puse aceptar", JOptionPane.PLAIN_MESSAGE);
 
+                
+                 String idbuscado = medicosForm.getId();
+                citasForm.getjTextFieldIDMedico().setText(idbuscado);
+                String medicoBuscado = buscarMedico(Long.parseLong(idbuscado)).getNombre()+
+                 " " + buscarMedico(Long.parseLong(idbuscado)).getApellido1();
+                citasForm.getjTextFieldNombreMedico().setText(medicoBuscado);
+
+                
+                
                 citasForm.getjTextFieldIDMedico().setText(medicosForm.getId());
 
             }
@@ -474,7 +501,7 @@ public class CitasFormController {
                 .setParameter("medicos", filtro.getMedico()).list();
 
         // ejecutamos la consulta y la pasamos a lista
-        //   List<Citas> citasList = query.getResultList();
+        
         JTable table = new JTable();
         table = citasForm.getjTableCitas();
 
