@@ -10,7 +10,9 @@ import hospital_gestion.controlador.MedicosFormController;
 import hospital_gestion.controlador.PacientesFormController;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 
 /**
@@ -23,12 +25,23 @@ public class Main extends javax.swing.JFrame {
 
 
     /**
-     * Creamos el main y agregamos el formulario principal
+     * Creamos el main 
      */
     public Main() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-      //  getContentPane().add(jDesktopPane, BorderLayout.CENTER); // Añade el jDesktopPane al contenido principal
+         // Creamos un JLabel con la imagen
+        ImageIcon imageIcon = new ImageIcon("/media/logo.jpg"); 
+        JLabel imageLabel = new JLabel(imageIcon);
+        
+        // Establecer la posición y el tamaño del JLabel
+         imageLabel.setBounds(50, 50, imageIcon.getIconWidth(), imageIcon.getIconHeight());
+
+        // Agregar el JLabel al JDesktopPane
+         jDesktopPane.add(imageLabel);
+          jDesktopPane.setComponentZOrder(imageLabel, 0);
+  
+    
       
 }
 
@@ -49,6 +62,7 @@ public class Main extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jDesktopPane = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -80,15 +94,27 @@ public class Main extends javax.swing.JFrame {
 
         jDesktopPane.setToolTipText("\" GESTION DE HOSPITAL 2024 \"");
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/logo.png"))); // NOI18N
+        jLabel1.setToolTipText("");
+
+        jDesktopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jDesktopPaneLayout = new javax.swing.GroupLayout(jDesktopPane);
         jDesktopPane.setLayout(jDesktopPaneLayout);
         jDesktopPaneLayout.setHorizontalGroup(
             jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 809, Short.MAX_VALUE)
+            .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                .addGap(275, 275, 275)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jDesktopPaneLayout.setVerticalGroup(
             jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 467, Short.MAX_VALUE)
+            .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(295, Short.MAX_VALUE))
         );
 
         jMenu4.setText("Gestión");
@@ -308,6 +334,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JDesktopPane jDesktopPane;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

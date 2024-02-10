@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -145,14 +146,47 @@ public class CitasFormController {
                 int y = (int) ((dimension.getHeight() - pacientesForm.getHeight()) / 2);
                 pacientesForm.setLocation(x, y);
                 // cargamos el controlador
+                
+                
                 PacientesFormController pacientesFormController = new PacientesFormController(pacientesForm);
                 pacientesForm.setVisible(true);
+                pacientesForm.setBorder(new EmptyBorder(1, 1, 1, 1));
                 citasForm.add(pacientesForm);
 
                 // Hacemos que el hijo se comporte como un diálogo modal
                 JOptionPane.showMessageDialog(citasForm, pacientesForm, "Seleccione el paciente de la lista y puse aceptar", JOptionPane.PLAIN_MESSAGE);
 
                 citasForm.getjTextFieldFiltroIDPaciente().setText(pacientesForm.getId());
+
+            }
+        });
+        
+        
+        // Agregar un ActionListener para buscar  paciente
+        citasForm.getjButtonBuscaPaciente().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // instanciamos formulario de paciente
+
+                PacientesForm pacientesForm = new PacientesForm();
+
+                // centramos el formulario al centro de la ventana
+                Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+                int x = (int) ((dimension.getWidth() - pacientesForm.getWidth()) / 2);
+                int y = (int) ((dimension.getHeight() - pacientesForm.getHeight()) / 2);
+                pacientesForm.setLocation(x, y);
+                // cargamos el controlador
+                
+                
+                PacientesFormController pacientesFormController = new PacientesFormController(pacientesForm);
+                pacientesForm.setVisible(true);
+                pacientesForm.setBorder(new EmptyBorder(1, 1, 1, 1));
+                citasForm.add(pacientesForm);
+
+                // Hacemos que el hijo se comporte como un diálogo modal
+                JOptionPane.showMessageDialog(citasForm, pacientesForm, "Seleccione el paciente de la lista y puse aceptar", JOptionPane.PLAIN_MESSAGE);
+
+                citasForm.getjTextFieldIDPaciente().setText(pacientesForm.getId());
 
             }
         });
@@ -171,14 +205,48 @@ public class CitasFormController {
                 int y = (int) ((dimension.getHeight() - medicosForm.getHeight()) / 2);
                 medicosForm.setLocation(x, y);
                 // cargamos el controlador
-                MedicosFormController pacientesFormController = new MedicosFormController(medicosForm);
+                MedicosFormController medicosFormController = new MedicosFormController(medicosForm);
+                
                 medicosForm.setVisible(true);
+                medicosForm.setBorder(new EmptyBorder(1, 1, 1, 1));
                 citasForm.add(medicosForm);
 
                 // Hacemos que el hijo se comporte como un diálogo modal
                 JOptionPane.showMessageDialog(citasForm, medicosForm, "Seleccione el paciente de la lista y puse aceptar", JOptionPane.PLAIN_MESSAGE);
 
                 citasForm.getjTextFieldFiltroIDMedico().setText(medicosForm.getId());
+
+            }
+        });
+        
+        
+        
+        
+        
+        // Agregar un ActionListener para buscar  médico
+        citasForm.getjButtonBuscarMedico().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // instanciamos formulario de paciente
+
+                MedicosForm medicosForm = new MedicosForm();
+
+                // centramos el formulario al centro de la ventana
+                Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+                int x = (int) ((dimension.getWidth() - medicosForm.getWidth()) / 2);
+                int y = (int) ((dimension.getHeight() - medicosForm.getHeight()) / 2);
+                medicosForm.setLocation(x, y);
+                // cargamos el controlador
+                MedicosFormController medicosFormController = new MedicosFormController(medicosForm);
+                
+                medicosForm.setVisible(true);
+                medicosForm.setBorder(new EmptyBorder(1, 1, 1, 1));
+                citasForm.add(medicosForm);
+
+                // Hacemos que el hijo se comporte como un diálogo modal
+                JOptionPane.showMessageDialog(citasForm, medicosForm, "Seleccione el paciente de la lista y puse aceptar", JOptionPane.PLAIN_MESSAGE);
+
+                citasForm.getjTextFieldIDMedico().setText(medicosForm.getId());
 
             }
         });
@@ -223,7 +291,7 @@ public class CitasFormController {
 
             cargarCitasEnTabla(citasForm.getjTableCitas());
 
-            JOptionPane.showMessageDialog(null, "Paciente grabado corréctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Cita grabada corréctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
             return true;
         } catch (Exception e) {
             if (transaction != null) {
@@ -330,7 +398,7 @@ public class CitasFormController {
         cita.setPacientes(buscarPaciente(Long.parseLong(idpaciente)));
         cita.setMedicos(buscarMedico(Long.parseLong(idmedico)));
 
-        if (id.equals("")) {
+        if (id.equals("ID") || id.equals("")) {
 
         } else {
             cita.setId(Long.parseLong(id));
